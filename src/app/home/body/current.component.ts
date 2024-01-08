@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { RaceTable } from '../../Service/interface/formulaApi';
+import { FData } from '../../Service/interface/formulaApi';
 
 @Component({
   standalone: true,
   selector: 'app-current',
-  template: ` <h1>Current</h1>
-    <p>Current: {{ raceTable.round }}</p>`,
+  template: ` <h1>Current</h1> `,
 })
 export class CurrentComponent {
-  @Input() raceTable!: RaceTable;
+  @Input() FData!: FData;
 }

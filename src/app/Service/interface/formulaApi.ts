@@ -7,13 +7,13 @@ export interface FData {
   limit: string;
   offset: string;
   total: string;
-  raceTable: RaceTable;
+  // raceTable: RaceTable;
 }
 
 export interface RaceTable {
   season: string;
   round: string;
-  // races: Race[];
+  races: Race[];
 }
 
 export interface Race {

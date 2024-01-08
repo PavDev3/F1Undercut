@@ -9,7 +9,7 @@ import { CurrentComponent } from './body/current.component';
   template: `
     <div>
       <h1>F1 Api</h1>
-      <app-current> [race]="formulaService.race" </app-current>
+      <app-current> </app-current>
     </div>
     <router-outlet></router-outlet>
   `,
