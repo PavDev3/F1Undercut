@@ -1,8 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { formulaService } from '../Service/data/formulaService';
+import { CurrentComponent } from './body/current.component';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  template: '<h1>F1 Api</h1>',
+  template: `
+    <div>
+      <h1>F1 Api</h1>
+      <app-current> [race]="formulaService.race" </app-current>
+    </div>
+    <router-outlet></router-outlet>
+  `,
+  imports: [CurrentComponent, RouterOutlet, CurrentComponent],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  formulaService = inject(formulaService);
+}

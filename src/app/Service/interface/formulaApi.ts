@@ -7,13 +7,13 @@ export interface FData {
   limit: string;
   offset: string;
   total: string;
-  RaceTable: RaceTable;
+  raceTable: RaceTable;
 }
 
 export interface RaceTable {
   season: string;
   round: string;
-  Races: Race[];
+  // races: Race[];
 }
 
 export interface Race {
@@ -21,16 +21,16 @@ export interface Race {
   round: string;
   url: string;
   raceName: string;
-  Circuit: Circuit;
-  date: Date;
-  Results: Result[];
+  //   Circuit: Circuit;
+  //   date: Date;
+  //   results: Result[];
 }
 
 export interface Circuit {
   circuitId: string;
   url: string;
   circuitName: string;
-  Location: Location;
+  location: Location;
 }
 
 export interface Location {
@@ -49,8 +49,8 @@ export interface Result {
   grid: string;
   laps: string;
   status: Status;
-  Time?: ResultTime;
-  FastestLap: FastestLap;
+  time?: ResultTime;
+  fastestLap: FastestLap;
 }
 
 export interface Constructor {
@@ -74,8 +74,8 @@ export interface Driver {
 export interface FastestLap {
   rank: string;
   lap: string;
-  Time: FastestLapTime;
-  AverageSpeed: AverageSpeed;
+  time: FastestLapTime;
+  averageSpeed: AverageSpeed;
 }
 
 export interface AverageSpeed {
