@@ -3,10 +3,10 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, catchError, map } from 'rxjs';
 import { _currentResult } from '../../../../environments/environment';
-import { FData } from '../interface/formulaApi';
+import { RaceTable } from '../interface/formulaApi';
 
 export interface formulaState {
-  FData: FData;
+  raceTable: RaceTable;
 }
 
 @Injectable({
@@ -17,17 +17,16 @@ export class formulaService {
 
   // state
   private state = signal<formulaState>({
-    FData: {
-      url: '',
-      limit: '',
-      offset: '',
-      total: '',
+    raceTable: {
+      season: '',
+      round: '',
+      races: [],
     },
   });
 
   //Selectors
 
-  limit = computed(() => this.state().FData.limit);
+  limit = computed(() => this.state().raceTable.season);
 
   // Sources
 
