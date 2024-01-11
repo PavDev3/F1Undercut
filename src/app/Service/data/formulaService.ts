@@ -22,11 +22,16 @@ export class formulaService {
       limit: '',
       offset: '',
       total: '',
+      raceTable: {
+        season: '',
+        round: '',
+      },
     },
   });
 
   //Selectors
   MRData = computed(() => this.state().MRData);
+  raceTable = computed(() => this.state().MRData.raceTable);
 
   // Sources
 
@@ -40,10 +45,7 @@ export class formulaService {
 
       this.state.update((state) => ({
         ...state,
-        url: response.MRData.url,
-        limit: response.MRData.limit,
-        offset: response.MRData.offset,
-        total: response.MRData.total,
+        MRData: response.MRData,
       }));
     });
   }

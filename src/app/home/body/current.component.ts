@@ -5,9 +5,10 @@ import { MRData } from '../../Service/interface/formulaApi';
   standalone: true,
   selector: 'app-current',
   template: `
-    <h1>Current</h1>
-    <p>{{ MRData.total }}</p>
-    <p>{{ MRData.url }}</p>
+    <h1>Ultimo resultado:</h1>
+    <p>Limite {{ MRData.limit }}</p>
+    <p>Ronda: {{ MRData.raceTable.round }}</p>
+    <p>Temporada: {{ MRData.raceTable.season }}</p>
   `,
 })
 export class CurrentComponent {
