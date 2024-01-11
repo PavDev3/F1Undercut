@@ -6,12 +6,10 @@ import { MRData } from '../../Service/interface/formulaApi';
   selector: 'app-current',
   template: `
     <h1>Ultimo resultado:</h1>
-    <p>Limite {{ MRData.limit }}</p>
-    <p>Total {{ MRData.total }}</p>
-    <p>Url {{ MRData.url }}</p>
-    <p>Offset {{ MRData.offset }}</p>
     <p>Ronda: {{ MRData.RaceTable.round }}</p>
     <p>Temporada: {{ MRData.RaceTable.season }}</p>
+    <p>Gran Premio: {{ MRData.RaceTable.Races[0].raceName }}</p>
+    <p>Circuito: {{ MRData.RaceTable.Races[0].Circuit.circuitName }}</p>
   `,
 })
 export class CurrentComponent {

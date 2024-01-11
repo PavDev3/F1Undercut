@@ -25,6 +25,17 @@ export class formulaService {
       RaceTable: {
         season: '',
         round: '',
+        Races: [
+          {
+            season: '',
+            round: '',
+            url: '',
+            raceName: '',
+            Circuit: {
+              circuitName: '',
+            },
+          },
+        ],
       },
     },
   });

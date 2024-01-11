@@ -13,7 +13,7 @@ export interface MRData {
 export interface RaceTable {
   season: string;
   round: string;
-  // races: Race[];
+  Races: Race[];
 }
 
 export interface Race {
@@ -21,16 +21,16 @@ export interface Race {
   round: string;
   url: string;
   raceName: string;
-  //   Circuit: Circuit;
-  //   date: Date;
-  //   results: Result[];
+  Circuit: Circuit;
+  // date: Date;
+  // Results: Result[];
 }
 
 export interface Circuit {
-  circuitId: string;
-  url: string;
+  // circuitId: string;
+  // url: string;
   circuitName: string;
-  location: Location;
+  // Location: Location;
 }
 
 export interface Location {
@@ -49,8 +49,8 @@ export interface Result {
   grid: string;
   laps: string;
   status: Status;
-  time?: ResultTime;
-  fastestLap: FastestLap;
+  Time?: ResultTime;
+  FastestLap: FastestLap;
 }
 
 export interface Constructor {
@@ -74,8 +74,8 @@ export interface Driver {
 export interface FastestLap {
   rank: string;
   lap: string;
-  time: FastestLapTime;
-  averageSpeed: AverageSpeed;
+  Time: FastestLapTime;
+  AverageSpeed: AverageSpeed;
 }
 
 export interface AverageSpeed {
