@@ -31,7 +31,6 @@ export class formulaService {
 
   //Selectors
   MRData = computed(() => this.state().MRData);
-  raceTable = computed(() => this.state().MRData.raceTable);
 
   // Sources
 
@@ -42,7 +41,6 @@ export class formulaService {
 
     this.currentLoaded$.pipe(takeUntilDestroyed()).subscribe((response) => {
       console.log(response);
-
       this.state.update((state) => ({
         ...state,
         MRData: response.MRData,

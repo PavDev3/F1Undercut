@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { formulaService } from '../Service/data/formulaService';
 import { CurrentComponent } from './body/current.component';
+import { RaceTableComponent } from './body/racetable.component';
 
 @Component({
   standalone: true,
@@ -13,7 +14,12 @@ import { CurrentComponent } from './body/current.component';
     </div>
     <router-outlet></router-outlet>
   `,
-  imports: [CurrentComponent, RouterOutlet, CurrentComponent],
+  imports: [
+    CurrentComponent,
+    RouterOutlet,
+    CurrentComponent,
+    RaceTableComponent,
+  ],
 })
 export class HomeComponent {
   formulaService = inject(formulaService);
