@@ -3,10 +3,10 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, catchError, map } from 'rxjs';
 import { _currentResult } from '../../../../environments/environment';
-import { RaceTable } from '../interface/formulaApi';
+import { MRData } from '../interface/formulaApi';
 
 export interface formulaState {
-  raceTable: RaceTable;
+  MRData: MRData;
 }
 
 @Injectable({
@@ -17,16 +17,16 @@ export class formulaService {
 
   // state
   private state = signal<formulaState>({
-    raceTable: {
-      season: '',
-      round: '',
-      races: [],
+    MRData: {
+      url: '',
+      limit: '',
+      offset: '',
+      total: '',
     },
   });
 
   //Selectors
-
-  limit = computed(() => this.state().raceTable.season);
+  MRData = computed(() => this.state().MRData);
 
   // Sources
 
@@ -37,8 +37,13 @@ export class formulaService {
 
     this.currentLoaded$.pipe(takeUntilDestroyed()).subscribe((response) => {
       console.log(response);
+
       this.state.update((state) => ({
         ...state,
+        url: response.MRData.url,
+        limit: response.MRData.limit,
+        offset: response.MRData.offset,
+        total: response.MRData.total,
       }));
     });
   }

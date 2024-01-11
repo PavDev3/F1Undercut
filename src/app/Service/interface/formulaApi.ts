@@ -1,8 +1,8 @@
 export interface formulaApi {
-  fData: FData;
+  MRData: MRData;
 }
 
-export interface FData {
+export interface MRData {
   url: string;
   limit: string;
   offset: string;
