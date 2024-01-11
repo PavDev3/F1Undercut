@@ -7,7 +7,7 @@ export interface MRData {
   limit: string;
   offset: string;
   total: string;
-  raceTable: RaceTable;
+  RaceTable: RaceTable;
 }
 
 export interface RaceTable {

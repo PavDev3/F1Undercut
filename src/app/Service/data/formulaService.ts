@@ -22,7 +22,7 @@ export class formulaService {
       limit: '',
       offset: '',
       total: '',
-      raceTable: {
+      RaceTable: {
         season: '',
         round: '',
       },

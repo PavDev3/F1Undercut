@@ -10,7 +10,8 @@ import { MRData } from '../../Service/interface/formulaApi';
     <p>Total {{ MRData.total }}</p>
     <p>Url {{ MRData.url }}</p>
     <p>Offset {{ MRData.offset }}</p>
-    <p>Ronda: {{ MRData.raceTable.round }}</p>
+    <p>Ronda: {{ MRData.RaceTable.round }}</p>
+    <p>Temporada: {{ MRData.RaceTable.season }}</p>
   `,
 })
 export class CurrentComponent {
