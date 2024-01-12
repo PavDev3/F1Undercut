@@ -10,6 +10,7 @@ import { MRData } from '../../Service/interface/formulaApi';
     <p>Temporada: {{ MRData.RaceTable.season }}</p>
     <p>Gran Premio: {{ MRData.RaceTable.Races[0].raceName }}</p>
     <p>Circuito: {{ MRData.RaceTable.Races[0].Circuit.circuitName }}</p>
+    <h2></h2>
   `,
 })
 export class CurrentComponent {
