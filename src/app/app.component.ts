@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { formulaService } from './Service/data/formulaService';
+import { formulaService } from './Service/data/formula.service';
 
 @Component({
   selector: 'app-root',

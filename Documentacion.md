@@ -64,6 +64,12 @@ Schedule :
     }
 
 
+Drivers:
+
+Crear carpeta dentro de app que se llamara drivers.
+    - Necesitamos enrutar este componente ( driver-details/list)
+    - Inyectar lista de drivers en un drivers.service.ts
+
 
 
 
