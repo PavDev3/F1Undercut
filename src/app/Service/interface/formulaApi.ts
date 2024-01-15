@@ -23,12 +23,12 @@ export interface Race {
   raceName: string;
   Circuit: Circuit;
   // date: Date;
-  // Results: Result[];
+  Results: Result[];
 }
 
 export interface Circuit {
   // circuitId: string;
-  // url: string;
+  url: string;
   circuitName: string;
   // Location: Location;
 }
@@ -43,14 +43,14 @@ export interface Location {
 export interface Result {
   number: string;
   position: string;
-  points: string;
+  // points: string;
   Driver: Driver;
-  Constructor: Constructor;
-  grid: string;
-  laps: string;
-  status: Status;
-  Time?: ResultTime;
-  FastestLap: FastestLap;
+  // Constructor: Constructor;
+  // grid: string;
+  // laps: string;
+  // status: Status;
+  // Time?: ResultTime;
+  // FastestLap: FastestLap;
 }
 
 export interface Constructor {
@@ -61,14 +61,14 @@ export interface Constructor {
 }
 
 export interface Driver {
-  driverId: string;
+  // driverId: string;
   permanentNumber: string;
-  code: string;
-  url: string;
+  // code: string;
+  // url: string;
   givenName: string;
   familyName: string;
-  dateOfBirth: Date;
-  nationality: string;
+  // dateOfBirth: Date;
+  // nationality: string;
 }
 
 export interface FastestLap {

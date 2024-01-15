@@ -33,7 +33,19 @@ export class formulaService {
             raceName: '',
             Circuit: {
               circuitName: '',
+              url: '',
             },
+            Results: [
+              {
+                position: '',
+                number: '',
+                Driver: {
+                  givenName: '',
+                  familyName: '',
+                  permanentNumber: '',
+                },
+              },
+            ],
           },
         ],
       },

@@ -9,7 +9,16 @@ import { MRData } from '../../Service/interface/formulaApi';
     <p>Ronda: {{ MRData.RaceTable.round }}</p>
     <p>Temporada: {{ MRData.RaceTable.season }}</p>
     <p>Gran Premio: {{ MRData.RaceTable.Races[0].raceName }}</p>
-    <p>Circuito: {{ MRData.RaceTable.Races[0].Circuit.circuitName }}</p>
+    <a href="{{ MRData.RaceTable.Races[0].Circuit.url }}"
+      >Circuito: {{ MRData.RaceTable.Races[0].Circuit.circuitName }}</a
+    >
+    <p>
+      {{ MRData.RaceTable.Races[0].Results[0].position }} :
+      {{ MRData.RaceTable.Races[0].Results[0].Driver.givenName }}
+      {{ MRData.RaceTable.Races[0].Results[0].Driver.familyName }} #{{
+        MRData.RaceTable.Races[0].Results[0].Driver.permanentNumber
+      }}
+    </p>
   `,
 })
 export class CurrentComponent {
