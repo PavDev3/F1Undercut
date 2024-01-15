@@ -3,7 +3,7 @@ Ideas de diseño de la web-app:
 La web main, traerá siempre la ultima carrera y sus resultados.
 Tendremos un Bar menu a la izda compuesto por:
 
-- Últimos resultados ( Mostrara en una tabla información como ( https://ergast.com/api/f1/current/last/results ))
+- Últimos resultados (home de la web) ( Mostrara en una tabla información como ( https://ergast.com/api/f1/current/last/results ))
 
 - Standings ( Para ver una tabla con los resultados totales de esa temporada dividido en 2)
         - Drivers ( Clasificación por pilotos )
