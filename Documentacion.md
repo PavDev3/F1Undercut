@@ -7,7 +7,7 @@ Tendremos un Bar menu a la izda compuesto por:
  Este componente en la tabla tendrá 2 botones en cada extremo del Nombre del circuito, donde podrás ver resultado de la carrera anterior con un botón que sea "Carrera Anterior" Si no es la ultima, tendrá otro botón para "Siguiente Carrera" 
  Estos botones estarán deshabilitado si no existe carrera anterior, para el botón de "Carrera/Resultado anterior" y también para "Siguiente Carrera/Resultado" si es la ultima disputada
 
-- Standings ( Para ver una tabla con los resultados totales de esa temporada dividido en 2)
+- Standings ( Para ver una tabla con los resultados totales de esa temporada dividido en 2 ( https://ergast.com/api/f1/current ))
         - Drivers ( Clasificación por pilotos )
         - Constructors ( Clasificación por equipos )
 
@@ -27,6 +27,42 @@ Tendremos un Bar menu a la izda compuesto por:
 - Tracks ( Lista de Circuitos )
     - Misma composición que Drivers y Teams
         - Ficha del circuito ( Otra tabla con datos del circuito)
+
+
+        QUE VOY A NECESITAR DEL JSON?
+
+Ultimo resultado :
+
+    RaceTable {
+        season: '',
+        round: '',
+        raceName '',
+        grid: '',
+        laps: '',
+        points: '',
+        position: '',
+        number: '',
+        Races:[]
+        Circuit: [],
+        Results: [],
+        Driver: [],
+        Constructor: [],
+        Status: [],
+        ResultTime:[],
+        FastestLap: [],
+        }
+
+Schedule :
+    RaceTable {
+        Races: []
+        Circuit:[]
+        Location:[]
+        FirstPractice:[]
+        SecondPractice:[]
+        ThirdPractice:[]
+        Qualifying:[]
+    }
+
 
 
 
