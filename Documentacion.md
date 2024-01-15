@@ -4,6 +4,8 @@ La web main, traerá siempre la ultima carrera y sus resultados.
 Tendremos un Bar menu a la izda compuesto por:
 
 - Últimos resultados (home de la web) ( Mostrara en una tabla información como ( https://ergast.com/api/f1/current/last/results ))
+ Este componente en la tabla tendrá 2 botones en cada extremo del Nombre del circuito, donde podrás ver resultado de la carrera anterior con un botón que sea "Carrera Anterior" Si no es la ultima, tendrá otro botón para "Siguiente Carrera" 
+ Estos botones estarán deshabilitado si no existe carrera anterior, para el botón de "Carrera/Resultado anterior" y también para "Siguiente Carrera/Resultado"
 
 - Standings ( Para ver una tabla con los resultados totales de esa temporada dividido en 2)
         - Drivers ( Clasificación por pilotos )
