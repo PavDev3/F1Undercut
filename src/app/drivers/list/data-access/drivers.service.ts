@@ -9,11 +9,10 @@ export interface DriversBySeason {
   season: string;
   drivers: Driver[];
 }
-
 @Injectable({
   providedIn: 'root',
 })
-export class driversService {
+export class DriversService {
   private http = inject(HttpClient);
 
   // state
@@ -23,7 +22,8 @@ export class driversService {
   });
 
   //Selectors
-  driversBySeason = computed(() => this.state());
+  season = computed(() => this.state().season);
+  drivers = computed(() => this.state().drivers);
 
   // Sources
   driversBySeason$ = this.fetchDriversBySeason();

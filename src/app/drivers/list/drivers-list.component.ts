@@ -1,18 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DriversBySeason } from './interfaces/drivers.interface';
+import { DriversService } from './data-access/drivers.service';
 
 @Component({
   standalone: true,
   selector: 'app-drivers-list',
   imports: [RouterLink],
   template: `<h1>Driver List</h1>
-    <h2>Season {{ driversBySeason.season }}</h2>
+    <h2>Season {{ driversService.season() }}</h2>
     <ul>
-      <li></li>
+      @for (driver of driversService.drivers(); track driver.driverId) {
+      <li>{{ driver.givenName }} {{ driver.familyName }}</li>
+      }
     </ul>
+
     <button routerLink="/home">Home</button> `,
 })
 export class DriversListComponent {
-  @Input() driversBySeason!: DriversBySeason;
+  driversService = inject(DriversService);
 }
