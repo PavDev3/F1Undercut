@@ -10,7 +10,7 @@ import { TeamsListComponent } from '../teams/teams-list.component';
   standalone: true,
   selector: 'app-home',
   template: `
-    <h1>F1 Data</h1>
+    <h1>F1 Undercut</h1>
     <button routerLink="/last-results">Last Results</button>
     <button routerLink="/standings">Standings</button>
     <button routerLink="/drivers">Drivers</button>
