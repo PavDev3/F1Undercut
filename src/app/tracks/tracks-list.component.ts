@@ -3,9 +3,9 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-drivers-list',
+  selector: 'app-track-list',
   imports: [RouterLink],
-  template: `<h1>Driver List</h1>
+  template: `<h1>Tracks</h1>
     <button routerLink="/home">Home</button>`,
 })
-export class DriversListComponent {}
+export class TrackListComponent {}

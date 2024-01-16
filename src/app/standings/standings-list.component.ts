@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   selector: 'app-drivers-list',
   imports: [RouterLink],
-  template: `<h1>Driver List</h1>
+  template: `<h1>Standings</h1>
     <button routerLink="/home">Home</button>`,
 })
-export class DriversListComponent {}
+export class StandingsListComponent {}
