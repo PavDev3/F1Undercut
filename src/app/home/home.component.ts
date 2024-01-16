@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { formulaService } from '../Service/data/formula.service';
+import { driversService } from '../drivers/list/data-access/drivers.service';
 import { DriversListComponent } from '../drivers/list/drivers-list.component';
 import { ScheduleListComponent } from '../schedule/schedule-list.component';
 import { StandingsListComponent } from '../standings/standings-list.component';
@@ -29,5 +29,5 @@ import { TeamsListComponent } from '../teams/teams-list.component';
   ],
 })
 export class HomeComponent {
-  formulaService = inject(formulaService);
+  driversBySeason = inject(driversService);
 }

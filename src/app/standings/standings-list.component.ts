@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-drivers-list',
+  selector: 'app-standing-list',
   imports: [RouterLink],
   template: `<h1>Standings</h1>
     <button routerLink="/home">Home</button>`,

@@ -63,7 +63,6 @@ export class formulaService {
     // Reducers
 
     this.currentLoaded$.pipe(takeUntilDestroyed()).subscribe((response) => {
-      console.log(response);
       this.state.update((state) => ({
         ...state,
         MRData: response.MRData,
