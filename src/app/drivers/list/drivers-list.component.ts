@@ -10,7 +10,13 @@ import { DriversService } from './data-access/drivers.service';
     <h2>Season {{ driversService.season() }}</h2>
     <ul>
       @for (driver of driversService.drivers(); track driver.driverId) {
-      <li>{{ driver.givenName }} {{ driver.familyName }}</li>
+      <li>
+        #{{ driver.permanentNumber }}
+
+        {{ driver.givenName }}
+        {{ driver.familyName }} ,
+        {{ driver.nationality }}
+      </li>
       }
     </ul>
 

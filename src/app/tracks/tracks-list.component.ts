@@ -10,7 +10,7 @@ import { TracksService } from './data-access/tracks.service';
     <h2>Season {{ tracksService.season() }}</h2>
     <ul>
       @for (track of tracksService.tracks(); track track.circuitId) {
-      <li>{{ track.circuitName }}</li>
+      <li>{{ track.circuitName }}, {{ track.Location.country }}</li>
       }
     </ul>
     <button routerLink="/home">Home</button>`,
