@@ -11,7 +11,13 @@ import { ScheduleService } from './data-access/schedule.service';
     <h2>Season {{ scheduleService.season() }}</h2>
     <ul>
       @for (races of scheduleService.races(); track races.raceName) {
-      <li>{{ races.raceName }} - {{ races.date }}</li>
+      <li>
+        <b>{{ races.raceName }}</b> {{ races.date }}
+      </li>
+      <p>
+        <b>P1</b>: {{ races.FirstPractice.time }} <b>Q:</b
+        >{{ races.Qualifying.time }} <b>R:</b>{{ races.time }}
+      </p>
       }
     </ul>
 
