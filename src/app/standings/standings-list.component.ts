@@ -12,14 +12,15 @@ import { StandingsService } from './data-access/standings-drivers.service';
     <h2>Drivers</h2>
     <ul>
       @for (standingsList of standingsService.StandingsLists(); track
-      standingsList.DriverStandings){
+      standingsList.DriverStandings){ @for (Driver of
+      standingsList.DriverStandings; track Driver) {
       <li>
-        {{ standingsList.DriverStandings[0].position }}
-        {{ standingsList.DriverStandings[0].Driver.givenName }}
-        {{ standingsList.DriverStandings[0].Driver.familyName }}
-        {{ standingsList.DriverStandings[0].points }}
+        {{ Driver.position }}
+        {{ Driver.Driver.givenName }}
+        {{ Driver.Driver.familyName }}
+        {{ Driver.points }}
       </li>
-      }
+      } }
     </ul>
 
     <button routerLink="/home">Home</button> `,
