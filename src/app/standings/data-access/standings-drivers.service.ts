@@ -36,7 +36,6 @@ export class StandingsService {
     // reducers
 
     this.standingsDriversBySeason$.subscribe((response) => {
-      console.log(response);
       this.state.update((state) => ({
         ...state,
         season: response.MRData.StandingsTable.season,
