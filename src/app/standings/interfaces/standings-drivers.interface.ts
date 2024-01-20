@@ -1,4 +1,4 @@
-export interface StandingsTable {
+export interface StandingsBySeason {
   season: string;
   StandingsLists: StandingsLists[];
 }
@@ -35,8 +35,6 @@ export interface Constructors {
   name: string;
   nationality: string;
 }
-
-// ------------------------------
 
 export interface StandingsDriversResponse {
   MRData: {
