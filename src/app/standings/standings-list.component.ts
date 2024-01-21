@@ -7,7 +7,7 @@ import { StandingsService } from './data-access/standings-drivers.service';
   selector: 'app-standing-list',
   imports: [RouterLink],
   template: `<h1>Standings</h1>
-    <h2>{{ standingsService.season() }}</h2>
+    <h2>Season {{ standingsService.season() }}</h2>
 
     <h2>Drivers</h2>
     <ul>
