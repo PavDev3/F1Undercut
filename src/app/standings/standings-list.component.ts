@@ -14,7 +14,7 @@ import { StandingsService } from './data-access/standings-drivers.service';
         <h2>Season {{ standingsService.season() }}</h2>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col">
           <h3>Drivers</h3>
           <ul>
             @for (standingsList of standingsService.StandingsLists(); track
@@ -30,7 +30,7 @@ import { StandingsService } from './data-access/standings-drivers.service';
           </ul>
         </div>
 
-        <div class="col-md-6">
+        <div class="col">
           <h3>Constructors</h3>
           <ul>
             @for (standingsList of standingsConstructorService.StandingsLists();
@@ -60,13 +60,16 @@ import { StandingsService } from './data-access/standings-drivers.service';
       .row {
         display: flex;
         justify-content: space-around;
+        width: 100%;
         margin-bottom: 20px;
       }
 
-      .col-md-6 {
+      .col {
         width: 50%;
-        box-sizing: border-box;
-        padding: 0 50px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       button {
