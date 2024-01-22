@@ -25,7 +25,7 @@ import { StandingsService } from './data-access/standings-drivers.service';
     </ul>
 
     <h2>Constructors</h2>
-    <h3>Season {{ standingsConstructorService.season() }}</h3>
+
     <ul>
       @for (standingsList of standingsConstructorService.StandingsLists(); track
       standingsConstructorService.StandingsLists){ @for(Constructor of
