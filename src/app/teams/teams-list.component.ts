@@ -6,15 +6,60 @@ import { ConstructorsService } from './data-access/teams.service';
   standalone: true,
   selector: 'app-teams-list',
   imports: [RouterLink],
-  template: `<h1>Teams</h1>
+  template: ` <div class="container">
+    <h1>Teams</h1>
     <h2>Season {{ constructorsService.season() }}</h2>
-    <ul>
-      @for (constructor of constructorsService.constructors(); track
-      constructor.constructorId) {
-      <li>{{ constructor.name }}, {{ constructor.nationality }}</li>
+    <table class="constructorList">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Nationality</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (constructor of constructorsService.constructors(); track
+        constructor.constructorId) {
+        <tr>
+          <td>{{ constructor.name }}</td>
+          <td>{{ constructor.nationality }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <button routerLink="/home">Home</button>
+  </div>`,
+  styles: [
+    `
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-    </ul>
-    <button routerLink="/home">Home</button>`,
+
+      table {
+        width: 30%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      button {
+        margin-top: 20px;
+      }
+    `,
+  ],
 })
 export class TeamsListComponent {
   constructorsService = inject(ConstructorsService);

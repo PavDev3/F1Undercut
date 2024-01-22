@@ -7,7 +7,7 @@ import { ScheduleService } from './data-access/schedule.service';
   selector: 'app-schedule-list',
   imports: [RouterLink],
   template: `
-    <div class="container text-center">
+    <div class="container">
       <h1>Schedule</h1>
       <h2>Season {{ scheduleService.season() }}</h2>
 

@@ -71,21 +71,20 @@ import { StandingsService } from './data-access/standings-drivers.service';
   `,
   styles: [
     `
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
       .row {
         display: flex;
         justify-content: space-around; /* Puedes ajustar esto según tus necesidades */
         width: 100%; /* O ajusta el ancho total según tus necesidades */
         margin-bottom: 20px;
       }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-      .standings-table {
-        width: 80%;
+      table {
+        width: 100%;
         margin-top: 20px;
         border-collapse: collapse;
       }
@@ -99,6 +98,10 @@ import { StandingsService } from './data-access/standings-drivers.service';
 
       th {
         background-color: #f2f2f2;
+      }
+
+      button {
+        margin-top: 20px;
       }
     `,
   ],
