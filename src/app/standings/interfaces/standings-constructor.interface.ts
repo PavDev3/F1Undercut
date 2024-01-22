@@ -1,3 +1,8 @@
+export interface StandingsConstructorBySeason {
+  season: string;
+  StandingsLists: StandingsLists[];
+}
+
 export interface StandingsLists {
   season: string;
   round: string;

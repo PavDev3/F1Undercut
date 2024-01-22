@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { StandingsConstructorService } from './data-access/standings-constructor.service';
 import { StandingsService } from './data-access/standings-drivers.service';
 
 @Component({
@@ -23,8 +24,23 @@ import { StandingsService } from './data-access/standings-drivers.service';
       } }
     </ul>
 
+    <h2>Constructors</h2>
+    <h3>Season {{ standingsConstructorService.season() }}</h3>
+    <ul>
+      @for (standingsList of standingsConstructorService.StandingsLists(); track
+      standingsConstructorService.StandingsLists){ @for(Constructor of
+      standingsList.ConstructorStandings ; track Constructor) {
+      <li>
+        {{ Constructor.position }}
+        {{ Constructor.Constructor.name }}
+        {{ Constructor.points }}
+      </li>
+      } }
+    </ul>
+
     <button routerLink="/home">Home</button> `,
 })
 export class StandingsListComponent {
   standingsService = inject(StandingsService);
+  standingsConstructorService = inject(StandingsConstructorService);
 }
