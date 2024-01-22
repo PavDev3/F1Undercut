@@ -16,36 +16,56 @@ import { StandingsService } from './data-access/standings-drivers.service';
       <div class="row">
         <div class="col">
           <h3>Drivers</h3>
-          <ul>
-            @for (standingsList of standingsService.StandingsLists(); track
-            standingsList.DriverStandings){ @for (Driver of
-            standingsList.DriverStandings; track Driver) {
-            <li>
-              {{ Driver.position }}
-              {{ Driver.Driver.givenName }}
-              {{ Driver.Driver.familyName }}:
-              {{ Driver.points }}
-            </li>
-            } }
-          </ul>
+          <table class="standings-table-drivers">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (standingsList of standingsService.StandingsLists(); track
+              standingsList.DriverStandings){ @for (Driver of
+              standingsList.DriverStandings; track Driver) {
+              <tr>
+                <td>{{ Driver.position }}</td>
+                <td>
+                  {{ Driver.Driver.givenName }}
+                  {{ Driver.Driver.familyName }}
+                </td>
+                <td>{{ Driver.points }}</td>
+              </tr>
+              } }
+            </tbody>
+          </table>
         </div>
 
         <div class="col">
           <h3>Constructors</h3>
-          <ul>
-            @for (standingsList of standingsConstructorService.StandingsLists();
-            track standingsConstructorService.StandingsLists){ @for(Constructor
-            of standingsList.ConstructorStandings ; track Constructor) {
-            <li>
-              {{ Constructor.position }}
-              {{ Constructor.Constructor.name }}:
-              {{ Constructor.points }}
-            </li>
-            } }
-          </ul>
+          <table class="standings-table-constructors">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Constructor</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (standingsList of
+              standingsConstructorService.StandingsLists(); track
+              standingsConstructorService.StandingsLists){ @for(Constructor of
+              standingsList.ConstructorStandings ; track Constructor) {
+              <tr>
+                <td>{{ Constructor.position }}</td>
+                <td>{{ Constructor.Constructor.name }}</td>
+                <td>{{ Constructor.points }}</td>
+              </tr>
+              } }
+            </tbody>
+          </table>
         </div>
       </div>
-
       <button routerLink="/home">Home</button>
     </div>
   `,
@@ -59,21 +79,26 @@ import { StandingsService } from './data-access/standings-drivers.service';
 
       .row {
         display: flex;
-        justify-content: space-around;
-        width: 100%;
+        justify-content: space-around; /* Puedes ajustar esto según tus necesidades */
+        width: 100%; /* O ajusta el ancho total según tus necesidades */
         margin-bottom: 20px;
       }
 
-      .col {
-        width: 50%;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      .standings-table {
+        width: 80%;
+        margin-top: 20px;
+        border-collapse: collapse;
       }
 
-      button {
-        margin-top: 20px;
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
       }
     `,
   ],
