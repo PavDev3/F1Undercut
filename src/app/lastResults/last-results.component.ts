@@ -25,19 +25,19 @@ import { CurrentService } from './data-access/last-results.service';
           </tr>
         </thead>
         <tbody>
-          @for (result of currentService.Races(); track currentService.Races) {
-          @for (results of result.Results; track results) {
+          @for (race of currentService.Races(); track currentService.Races) {
+          @for (result of race.Results; track result) {
           <tr>
-            <td>{{ results.position }}</td>
+            <td>{{ result.position }}</td>
             <td>
-              {{ results.Driver.givenName }}
-              {{ results.Driver.familyName }}
+              {{ result.Driver.givenName }}
+              {{ result.Driver.familyName }}
             </td>
-            <td>{{ results.Constructor.name }}</td>
-            <td>{{ results.laps }}</td>
-            <td>{{ results.Time?.time }}</td>
-            <td>{{ results.status }}</td>
-            <td>{{ results.points }}</td>
+            <td>{{ result.Constructor.name }}</td>
+            <td>{{ result.laps }}</td>
+            <td>{{ result.Time?.time }}</td>
+            <td>{{ result.status }}</td>
+            <td>{{ result.points }}</td>
           </tr>
 
           } }

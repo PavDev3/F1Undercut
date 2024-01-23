@@ -30,7 +30,7 @@ export interface Results {
   grid: string;
   laps: string;
   status: string;
-  Time: Time;
+  Time?: Time;
   FastestLap: FastestLap;
 }
 
