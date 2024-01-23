@@ -45,8 +45,6 @@ import { CurrentService } from './data-access/last-results.service';
 
         <tbody></tbody>
       </table>
-
-      <button routerLink="/home">Home</button>
     </div>
   `,
   styles: [
@@ -78,10 +76,6 @@ import { CurrentService } from './data-access/last-results.service';
 
       th {
         background-color: #f2f2f2;
-      }
-
-      button {
-        margin-top: 20px;
       }
     `,
   ],
