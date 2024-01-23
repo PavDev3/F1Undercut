@@ -54,7 +54,7 @@ import { StandingsService } from './data-access/standings-drivers.service';
             <tbody>
               @for (standingsList of
               standingsConstructorService.StandingsLists(); track
-              standingsConstructorService.StandingsLists){ @for(Constructor of
+              standingsConstructorService.StandingsLists) { @for(Constructor of
               standingsList.ConstructorStandings ; track Constructor) {
               <tr>
                 <td>{{ Constructor.position }}</td>
