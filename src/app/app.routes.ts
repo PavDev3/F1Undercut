@@ -7,11 +7,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'home',
-    redirectTo: 'last-results',
-    pathMatch: 'full',
-  },
-  {
     path: 'drivers',
     loadComponent: () =>
       import('./drivers/list/drivers-list.component').then(

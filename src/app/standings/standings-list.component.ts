@@ -66,7 +66,6 @@ import { StandingsService } from './data-access/standings-drivers.service';
           </table>
         </div>
       </div>
-      <button routerLink="/home">Home</button>
     </div>
   `,
   styles: [
@@ -98,10 +97,6 @@ import { StandingsService } from './data-access/standings-drivers.service';
 
       th {
         background-color: #f2f2f2;
-      }
-
-      button {
-        margin-top: 20px;
       }
     `,
   ],

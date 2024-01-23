@@ -27,8 +27,6 @@ import { ConstructorsService } from './data-access/teams.service';
         }
       </tbody>
     </table>
-
-    <button routerLink="/home">Home</button>
   </div>`,
   styles: [
     `
@@ -53,10 +51,6 @@ import { ConstructorsService } from './data-access/teams.service';
 
       th {
         background-color: #f2f2f2;
-      }
-
-      button {
-        margin-top: 20px;
       }
     `,
   ],

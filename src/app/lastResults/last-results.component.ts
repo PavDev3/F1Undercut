@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 import { CurrentService } from './data-access/last-results.service';
 
 @Component({
   standalone: true,
   selector: 'app-last-results-list',
-  imports: [RouterLink],
   template: `
     <div class="container">
       <h1>Last Results</h1>
@@ -79,6 +79,7 @@ import { CurrentService } from './data-access/last-results.service';
       }
     `,
   ],
+  imports: [RouterLink, HeaderComponent],
 })
 export class LastResultsComponent {
   currentService = inject(CurrentService);

@@ -21,13 +21,13 @@ import { TeamsListComponent } from '../teams/teams-list.component';
   template: `
     <header>
       <div>
+        <h1>F1 Undercut</h1>
         <button routerLink="/last-results">Last Results</button>
-        <button routerLink="/home">Standings</button>
+        <button routerLink="/standings">Standings</button>
         <button routerLink="/drivers">Drivers</button>
         <button routerLink="/schedule">Schedule</button>
         <button routerLink="/teams">Teams</button>
         <button routerLink="/tracks">Tracks</button>
-        <h1>F1 Undercut</h1>
       </div>
     </header>
   `,
@@ -40,6 +40,10 @@ import { TeamsListComponent } from '../teams/teams-list.component';
         background-color: #333;
         color: #fff;
         padding: 10px;
+      }
+      h1 {
+        display: flex;
+        justify-content: space-around;
       }
     `,
   ],
