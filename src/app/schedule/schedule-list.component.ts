@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DateFormatPipe, HoraFormatoPipe } from '../shared/date-format.pipe';
 import { ScheduleService } from './data-access/schedule.service';
 
 @Component({
   standalone: true,
   selector: 'app-schedule-list',
-  imports: [RouterLink],
   template: `
     <div class="container">
       <h1>Schedule</h1>
@@ -27,10 +27,10 @@ import { ScheduleService } from './data-access/schedule.service';
             <td>
               <b>{{ races.raceName }}</b>
             </td>
-            <td>{{ races.date }}</td>
-            <td>{{ races.FirstPractice.time }}</td>
-            <td>{{ races.Qualifying.time }}</td>
-            <td>{{ races.time }}</td>
+            <td>{{ races.date | dateFormat }}</td>
+            <td>{{ races.FirstPractice.time | timeFormat }}</td>
+            <td>{{ races.Qualifying.time | timeFormat }}</td>
+            <td>{{ races.time | timeFormat }}</td>
           </tr>
           }
         </tbody>
@@ -69,6 +69,7 @@ import { ScheduleService } from './data-access/schedule.service';
       }
     `,
   ],
+  imports: [RouterLink, DateFormatPipe, HoraFormatoPipe],
 })
 export class ScheduleListComponent {
   scheduleService = inject(ScheduleService);
