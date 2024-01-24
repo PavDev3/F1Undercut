@@ -53,4 +53,7 @@ export const routes: Routes = [
         (m) => m.DriverDetailsComponent
       ),
   },
+  {
+    path: 'track-details/:id',
+  },
 ];
