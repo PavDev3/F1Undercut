@@ -46,4 +46,11 @@ export const routes: Routes = [
         (m) => m.TrackListComponent
       ),
   },
+  {
+    path: 'driver-details/:id',
+    loadComponent: () =>
+      import('./drivers/details/driver-details.component').then(
+        (m) => m.DriverDetailsComponent
+      ),
+  },
 ];

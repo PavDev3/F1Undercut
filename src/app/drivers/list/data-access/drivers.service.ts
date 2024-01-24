@@ -49,4 +49,7 @@ export class DriversService {
       map((response) => response)
     );
   }
+  getDriverById(driverId: string): Driver | undefined {
+    return this.state().drivers.find((driver) => driver.driverId === driverId);
+  }
 }

@@ -4,7 +4,7 @@ export interface Driver {
   url: string;
   givenName: string;
   familyName: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   nationality: string;
 }
 

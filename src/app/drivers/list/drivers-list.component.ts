@@ -22,8 +22,9 @@ import { DriversService } from './data-access/drivers.service';
         <tr>
           <td>{{ driver.permanentNumber }}</td>
           <td>
-            {{ driver.givenName }}
-            {{ driver.familyName }}
+            <a [routerLink]="['/driver-details', driver.driverId]">
+              {{ driver.givenName }} {{ driver.familyName }}
+            </a>
           </td>
           <td>
             {{ driver.nationality }}
