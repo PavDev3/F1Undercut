@@ -51,4 +51,8 @@ export class TracksService {
       map((response) => response)
     );
   }
+
+  getTrackById(circuitId: string): Tracks | undefined {
+    return this.state().tracks.find((track) => track.circuitId === circuitId);
+  }
 }

@@ -55,5 +55,9 @@ export const routes: Routes = [
   },
   {
     path: 'track-details/:id',
+    loadComponent: () =>
+      import('./tracks/details/track-details.component').then(
+        (m) => m.TrackDetailsComponent
+      ),
   },
 ];

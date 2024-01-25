@@ -9,7 +9,7 @@ import { Driver } from '../list/interfaces/drivers.interface';
   selector: 'driver-details',
   template: `
     <div>
-      <h1>Driver Details</h1>
+      <h2>Driver Details</h2>
       <div>
         <strong>Driver Name:</strong> {{ driver.givenName }}
         {{ driver.familyName }}

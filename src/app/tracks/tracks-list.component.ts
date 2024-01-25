@@ -8,7 +8,7 @@ import { TracksService } from './data-access/tracks.service';
   imports: [RouterLink],
   template: `
     <div class="container">
-      <h1>Tracks</h1>
+      <h1>Circuits</h1>
       <h2>Season {{ tracksService.season() }}</h2>
       <table class="trackList">
         <thead>
@@ -21,7 +21,11 @@ import { TracksService } from './data-access/tracks.service';
         <tbody>
           @for (track of tracksService.tracks(); track track.circuitId) {
           <tr>
-            <td>{{ track.circuitName }}</td>
+            <td>
+              <a [routerLink]="['/track-details', track.circuitId]"
+                >{{ track.circuitName }}
+              </a>
+            </td>
             <td>{{ track.Location.country }}</td>
           </tr>
           }
