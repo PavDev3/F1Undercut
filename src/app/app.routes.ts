@@ -60,4 +60,11 @@ export const routes: Routes = [
         (m) => m.TrackDetailsComponent
       ),
   },
+  {
+    path: 'team-details/:id',
+    loadComponent: () =>
+      import('./teams/details/team-details.component').then(
+        (m) => m.TeamDetailsComponent
+      ),
+  },
 ];

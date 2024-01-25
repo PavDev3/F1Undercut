@@ -55,4 +55,10 @@ export class ConstructorsService {
       map((response) => response)
     );
   }
+
+  getConstructorById(constructorId: string): Constructors | undefined {
+    return this.state().constructors.find(
+      (constructor) => constructor.constructorId === constructorId
+    );
+  }
 }

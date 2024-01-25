@@ -21,7 +21,11 @@ import { ConstructorsService } from './data-access/teams.service';
         @for (constructor of constructorsService.constructors(); track
         constructor.constructorId) {
         <tr>
-          <td>{{ constructor.name }}</td>
+          <td>
+            <a [routerLink]="['/team-details', constructor.constructorId]"
+              >{{ constructor.name }}
+            </a>
+          </td>
           <td>{{ constructor.nationality }}</td>
         </tr>
         }
