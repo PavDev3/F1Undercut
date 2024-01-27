@@ -24,8 +24,8 @@ import { TeamsListComponent } from '../teams/teams-list.component';
         <h1>F1 Undercut</h1>
         <button routerLink="/last-results">Last Results</button>
         <button routerLink="/standings">Standings</button>
-        <button routerLink="/drivers">Drivers</button>
         <button routerLink="/schedule">Schedule</button>
+        <button routerLink="/drivers">Drivers</button>
         <button routerLink="/teams">Teams</button>
         <button routerLink="/tracks">Tracks</button>
       </div>
