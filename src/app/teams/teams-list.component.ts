@@ -9,6 +9,7 @@ import { ConstructorsService } from './data-access/teams.service';
   template: ` <div class="container">
     <h1>Teams</h1>
     <h2>Season {{ constructorsService.season() }}</h2>
+    <div class="fflag fflag-ES"></div>
     <table class="constructorList">
       <thead>
         <tr>
@@ -26,7 +27,12 @@ import { ConstructorsService } from './data-access/teams.service';
               >{{ constructor.name }}
             </a>
           </td>
-          <td>{{ constructor.nationality }}</td>
+          <td>
+            <div
+              class="fflag ff-md {{ 'fflag-' + constructor.nationality }}"
+            ></div>
+            {{ constructor.nationality }}
+          </td>
         </tr>
         }
       </tbody>
