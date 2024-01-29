@@ -9,6 +9,7 @@
     box-sizing: content-box;
     box-shadow: 0 0 0 1px rgb(220,220,220);
 }
+
 .fflag-CH,
 .fflag-NP {box-shadow: none!important}
 .fflag-DZ {background-position:center 0.2287%}
@@ -241,7 +242,7 @@
 .fflag-MH {background-position:left 50.5546%}
 .fflag-FM {background-position:center 50.7763%}
 .fflag-NC {background-position:center 50.998%}
-.fflag-NZ {background-position:center 51.2197%}
+.fflag-New {background-position:center 51.2197%}
 .fflag-NR {background-position:left 51.4414%}
 .fflag-NU {background-position:center 51.6631%}
 .fflag-NF {background-position:center 51.8848%}
@@ -252,6 +253,7 @@
 .fflag-TV {background-position:center 52.9933%}
 .fflag-VU {background-position:left 53.215%}
 .fflag-WF {background-position:center 53.4385%}
+
 
 .fflag.ff-sm {width: 18px;height: 11px}
 .fflag.ff-md {width: 27px;height: 17px}
