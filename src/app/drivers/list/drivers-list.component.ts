@@ -6,34 +6,39 @@ import { DriversService } from './data-access/drivers.service';
   standalone: true,
   selector: 'app-drivers-list',
   imports: [RouterLink],
-  template: ` <div class="container">
-    <h1>Driver List</h1>
-    <h2>Season {{ driversService.season() }}</h2>
-    <table class="driverList">
-      <thead>
-        <tr>
-          <th>Number</th>
-          <th>Driver</th>
-          <th>Nationality</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (driver of driversService.drivers(); track driver.driverId) {
-        <tr>
-          <td>{{ driver.permanentNumber }}</td>
-          <td>
-            <a [routerLink]="['/driver-details', driver.driverId]">
-              {{ driver.givenName }} {{ driver.familyName }}
-            </a>
-          </td>
-          <td>
-            {{ driver.nationality }}
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
-  </div>`,
+  template: `
+    <div class="container">
+      <h1>Driver List</h1>
+      <h2>Season {{ driversService.season() }}</h2>
+      <table class="driverList">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Driver</th>
+            <th>Nationality</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (driver of driversService.drivers(); track driver.driverId) {
+          <tr>
+            <td>{{ driver.permanentNumber }}</td>
+            <td>
+              <a [routerLink]="['/driver-details', driver.driverId]">
+                {{ driver.givenName }} {{ driver.familyName }}
+              </a>
+            </td>
+            <td>
+              <div
+                class="fflag ff-md {{ 'fflag-' + driver.nationality }} "
+              ></div>
+              {{ driver.nationality }}
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  `,
   styles: [
     `
       .container {
