@@ -29,7 +29,9 @@ import { DriversService } from './data-access/drivers.service';
             </td>
             <td>
               <div
-                class="fflag ff-md {{ 'fflag-' + driver.nationality }} "
+                class="fflag ff-md {{
+                  'fflag-' + driver.nationality.replaceAll(' ', '')
+                }} "
               ></div>
               {{ driver.nationality }}
             </td>
