@@ -26,7 +26,15 @@ import { TracksService } from './data-access/tracks.service';
                 >{{ track.circuitName }}
               </a>
             </td>
-            <td>{{ track.Location.country }}</td>
+
+            <td>
+              <div
+                class="fflag ff-md {{
+                  'fflag-' + track.Location.country.replaceAll(' ', '')
+                }}"
+              ></div>
+              {{ track.Location.country }}
+            </td>
           </tr>
           }
         </tbody>

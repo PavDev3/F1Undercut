@@ -82,8 +82,8 @@
 .fflag-BM {background-position:center 15.0826%}
 .fflag-BO {background-position:center 15.306%}
 .fflag-VG {background-position:center 15.528%}
-.fflag-BR {background-position:center 15.7496%}
-.fflag-Canadian {background-position:center 15.9694%}
+.fflag-Brazil {background-position:center 15.7496%}
+.fflag-Canadian, .fflag-Canada {background-position:center 15.9694%}
 .fflag-KY {background-position:center 16.1911%}
 .fflag-CL {background-position:left 16.4128%}
 .fflag-CO {background-position:left 16.6345%}
@@ -106,7 +106,7 @@
 .fflag-HN {background-position:center 20.4034%}
 .fflag-JM {background-position:center 20.6241%}
 .fflag-MQ {background-position:center 20.8468%}
-.fflag-Mexican {background-position:center 21.0685%}
+.fflag-Mexican, .fflag-Mexico {background-position:center 21.0685%}
 .fflag-MS {background-position:center 21.2902%}
 .fflag-NI {background-position:center 21.5119%}
 .fflag-PA {background-position:center 21.7336%}
@@ -121,13 +121,13 @@
 .fflag-SX {background-position:left 23.732%}
 .fflag-TT {background-position:center 23.9506%}
 .fflag-TC {background-position:center 24.1723%}
-.fflag-American, .fflag-USA {background-position:center 24.392%}
+.fflag-American, .fflag-USA, .fflag-UnitedStates {background-position:center 24.392%}
 .fflag-VI {background-position:center 24.6157%}
 .fflag-UY {background-position:left 24.8374%}
 .fflag-VE {background-position:center 25.0591%}
 .fflag-AB {background-position:center 25.279%}
 .fflag-AF {background-position:center 25.5025%}
-.fflag-AZ {background-position:center 25.7242%}
+.fflag-Azerbaijan {background-position:center 25.7242%}
 .fflag-BD {background-position:center 25.9459%}
 .fflag-BT {background-position:center 26.1676%}
 .fflag-BN {background-position:center 26.3885%}
@@ -137,7 +137,7 @@
 .fflag-HK {background-position:center 27.2761%}
 .fflag-IN {background-position:center 27.4978%}
 .fflag-ID {background-position:center 27.7195%}
-.fflag-Japanese {background-position:center 27.9412%}
+.fflag-Japanese, .fflag-Japan {background-position:center 27.9412%}
 .fflag-KZ {background-position:center 28.1615%}
 .fflag-LA {background-position:center 28.3846%}
 .fflag-MO {background-position:center 28.6063%}
@@ -151,7 +151,7 @@
 .fflag-PW {background-position:center 30.3799%}
 .fflag-PG {background-position:center 30.6016%}
 .fflag-PH {background-position:left 30.8233%}
-.fflag-SG {background-position:left 31.045%}
+.fflag-Singapore {background-position:left 31.045%}
 .fflag-KR {background-position:center 31.2667%}
 .fflag-LK {background-position:right 31.4884%}
 .fflag-TW {background-position:left 31.7101%}
@@ -164,9 +164,9 @@
 .fflag-AL {background-position:center 33.25975%}
 .fflag-AD {background-position:center 33.4837%}
 .fflag-AM {background-position:center 33.7054%}
-.fflag-Austrian {background-position:center 33.9271%}
+.fflag-Austrian, .fflag-Austria {background-position:center 33.9271%}
 .fflag-BY {background-position:left 34.1488%}
-.fflag-BE {background-position:center 34.3705%}
+.fflag-Belgium {background-position:center 34.3705%}
 .fflag-BA {background-position:center 34.5922%}
 .fflag-BG {background-position:center 34.8139%}
 .fflag-HR {background-position:center 35.0356%}
@@ -181,11 +181,11 @@
 .fflag-GI {background-position:center 37.0309%}
 .fflag-GR {background-position:left 37.2526%}
 .fflag-GG {background-position:center 37.4743%}
-.fflag-HU {background-position:center 37.696%}
+.fflag-Hungary {background-position:center 37.696%}
 .fflag-IS {background-position:center 37.9177%}
 .fflag-IE {background-position:center 38.1394%}
 .fflag-IM {background-position:center 38.3611%}
-.fflag-Italian {background-position:center 38.5828%}
+.fflag-Italian, .fflag-Italy {background-position:center 38.5828%}
 .fflag-JE {background-position:center 38.8045%}
 .fflag-XK {background-position:center 39.0262%}
 .fflag-LV {background-position:center 39.2479%}
@@ -194,9 +194,9 @@
 .fflag-LU {background-position:center 39.913%}
 .fflag-MT {background-position:left 40.1347%}
 .fflag-MD {background-position:center 40.3564%}
-.fflag-Monegasque {background-position:center 40.5781%}
+.fflag-Monegasque, .fflag-Monaco {background-position:center 40.5781%}
 .fflag-ME {background-position:center 40.7998%}
-.fflag-Dutch {background-position:center 41.0215%}
+.fflag-Dutch, .fflag-Netherlands {background-position:center 41.0215%}
 .fflag-MK {background-position:center 41.2432%}
 .fflag-NO {background-position:center 41.4649%}
 .fflag-PL {background-position:center 41.6866%}
@@ -207,14 +207,14 @@
 .fflag-RS {background-position:center 42.7951%}
 .fflag-SK {background-position:center 43.0168%}
 .fflag-SI {background-position:center 43.2385%}
-.fflag-Spanish {background-position:left 43.4602%}
+.fflag-Spanish, .fflag-Spain {background-position:left 43.4602%}
 .fflag-SE {background-position:center 43.6819%}
 .fflag-Swiss {background-position:center 43.9036%}
 .fflag-TR {background-position:center 44.1253%}
 .fflag-UA {background-position:center 44.347%}
-.fflag-British {background-position:center 44.5687%}
+.fflag-British, .fflag-UK {background-position:center 44.5687%}
 .fflag-VA {background-position:right 44.7904%}
-.fflag-BH {background-position:center 45.0121%}
+.fflag-Bahrain {background-position:center 45.0121%}
 .fflag-IR {background-position:center 45.2338%}
 .fflag-IQ {background-position:center 45.4555%}
 .fflag-IL {background-position:center 45.6772%}
@@ -225,13 +225,13 @@
 .fflag-OM {background-position:left 46.7857%}
 .fflag-PK {background-position:center 47.0074%}
 .fflag-PS {background-position:center 47.2291%}
-.fflag-QA {background-position:center 47.4508%}
-.fflag-SA {background-position:center 47.6725%}
+.fflag-Qatar {background-position:center 47.4508%}
+.fflag-SaudiArabia {background-position:center 47.6725%}
 .fflag-SY {background-position:center 47.8942%}
-.fflag-AE {background-position:center 48.1159%}
+.fflag-UAE {background-position:center 48.1159%}
 .fflag-UZ {background-position:left 48.3376%}
 .fflag-AS {background-position:right 48.5593%}
-.fflag-Australian {background-position:center 48.781%}
+.fflag-Australian, .fflag-Australia {background-position:center 48.781%}
 .fflag-CX {background-position:center 49.002%}
 .fflag-CC {background-position:center 49.2244%}
 .fflag-CK {background-position:center 49.4445%}
