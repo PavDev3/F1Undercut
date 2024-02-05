@@ -9,7 +9,6 @@ import { Tracks } from '../../tracks/interfaces/tracks.interface';
   template: ` <div>
     <h2>Results</h2>
     <div><strong>Circuit Name:</strong> {{ track.circuitName }}</div>
-    <div><strong>Round: {{races.}}</div>
 
     <div>
       <strong>Wikipedia:</strong>
@@ -27,12 +26,10 @@ import { Tracks } from '../../tracks/interfaces/tracks.interface';
 export class ScheduleDetailsComponent {
   circuitId!: string;
   track!: Tracks;
-  races! Races;
 
   constructor(
     private route: ActivatedRoute,
-    private tracksService: TracksService,
-
+    private tracksService: TracksService
   ) {}
 
   ngOnInit() {
