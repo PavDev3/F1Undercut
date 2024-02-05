@@ -67,4 +67,11 @@ export const routes: Routes = [
         (m) => m.TeamDetailsComponent
       ),
   },
+  {
+    path: 'schedule-details/:id',
+    loadComponent: () =>
+      import('./schedule/details/schedule-details.component').then(
+        (m) => m.ScheduleDetailsComponent
+      ),
+  },
 ];
