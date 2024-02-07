@@ -25,7 +25,7 @@ import { ScheduleService } from './data-access/schedule.service';
           @for (races of scheduleService.races(); track races.raceName) {
           <tr>
             <td>
-              <a [routerLink]="['/schedule-details', races.Circuit.circuitId]">
+              <a [routerLink]="['/results', races.round]">
                 <b>{{ races.raceName }}</b></a
               >
             </td>
