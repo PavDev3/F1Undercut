@@ -3,6 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, catchError, map } from 'rxjs';
 import { _scheduleDetailsResults } from '../../../../../environments/environment';
+
 import {
   Races,
   ResultsResponse,
@@ -10,8 +11,11 @@ import {
 
 export interface ResultsSchedule {
   season: string;
+  round: string;
   Races: Races[];
 }
+
+const round = '1';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +26,7 @@ export class ScheduleResultsService {
   // state
 
   private state = signal<ResultsSchedule>({
+    round: '',
     season: '',
     Races: [],
   });
@@ -29,6 +34,7 @@ export class ScheduleResultsService {
   // Selectors
   season = computed(() => this.state().season);
   Races = computed(() => this.state().Races);
+  round = computed(() => this.state().round);
 
   // Sources
 
@@ -42,12 +48,14 @@ export class ScheduleResultsService {
         ...state,
         season: response.MRData.RaceTable.season,
         Races: response.MRData.RaceTable.Races,
+        round: response.MRData.RaceTable.round,
       }));
     });
   }
 
   private fetchScheduleResults() {
-    return this.http.get<ResultsResponse>(`${_scheduleDetailsResults}`).pipe(
+    const url = `${_scheduleDetailsResults}${round}/results.json`;
+    return this.http.get<ResultsResponse>(url).pipe(
       catchError((err) => {
         console.error('Error fetching schedule results');
         return EMPTY;
@@ -56,9 +64,10 @@ export class ScheduleResultsService {
     );
   }
 
-  getRaceById(circuitName: string): Races | undefined {
-    return this.state().Races.find(
-      (circuit) => circuit.Circuit.circuitName === circuitName
+  // Get results by round
+  getResultsByRound(round: string) {
+    return this.http.get<ResultsResponse>(
+      `${_scheduleDetailsResults}/${round}`
     );
   }
 }
