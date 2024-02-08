@@ -1,10 +1,10 @@
 export interface ScheduleBySeason {
   season: string;
-  races: Races[];
+  races: Race[];
 }
 
 // -- Races ---
-export interface Races {
+export interface Race {
   season: string;
   round: string;
   url: string;
@@ -64,7 +64,7 @@ export interface ScheduleResponse {
   MRData: {
     RaceTable: {
       season: string;
-      Races: Races[];
+      Races: Race[];
     };
   };
 }

@@ -4,18 +4,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, catchError, map } from 'rxjs';
 import { _scheduleDetailsResults } from '../../../../../environments/environment';
 
-import {
-  Races,
-  ResultsResponse,
-} from '../interface/schedule-results.interface';
+import { Race, ResultsResponse } from '../interface/schedule-results.interface';
 
 export interface ResultsSchedule {
   season: string;
   round: string;
-  Races: Races[];
+  Races: Race[];
 }
-
-const round = '1';
 
 @Injectable({
   providedIn: 'root',
@@ -54,7 +49,7 @@ export class ScheduleResultsService {
   }
 
   private fetchScheduleResults() {
-    const url = `${_scheduleDetailsResults}${round}/results.json`;
+    const url = `${_scheduleDetailsResults}results.json`;
     return this.http.get<ResultsResponse>(url).pipe(
       catchError((err) => {
         console.error('Error fetching schedule results');
@@ -67,7 +62,7 @@ export class ScheduleResultsService {
   // Get results by round
   getResultsByRound(round: string) {
     return this.http.get<ResultsResponse>(
-      `${_scheduleDetailsResults}/${round}`
+      `${_scheduleDetailsResults}${round}/results.json`
     );
   }
 }

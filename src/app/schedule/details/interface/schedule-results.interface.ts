@@ -1,9 +1,9 @@
 export interface ResultsSchedule {
   season: string;
-  Races: Races[];
+  Races: Race[];
 }
 
-export interface Races {
+export interface Race {
   season: string;
   round: string;
   url: string;
@@ -71,7 +71,7 @@ export interface ResultsResponse {
     RaceTable: {
       season: string;
       round: string;
-      Races: Races[];
+      Races: Race[];
     };
   };
 }

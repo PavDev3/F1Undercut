@@ -1,17 +1,20 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+
+import { JsonPipe, NgIf } from '@angular/common';
 import { ScheduleResultsService } from './data-access/schedule-results.service';
+import { Race } from './interface/schedule-results.interface';
 
 @Component({
   standalone: true,
   selector: 'schedule-details',
+  imports: [JsonPipe, NgIf],
   template: `
-    <div class="container">
+    <div class="container" *ngIf="details">
       <h2>Results</h2>
-      @for (races of scheduleResultsService.Races(); track races.raceName) {
-      <h4>{{ races.Circuit.circuitName }}</h4>
-      }
-
-      <table>
+      <h3>{{ details.raceName }}</h3>
+      <table class="lastResults">
         <thead>
           <tr>
             <th>Position</th>
@@ -24,9 +27,7 @@ import { ScheduleResultsService } from './data-access/schedule-results.service';
           </tr>
         </thead>
         <tbody>
-          @for (race of scheduleResultsService.Races(); track
-          scheduleResultsService.Races) { @for (result of race.Results; track
-          result) {
+          @for (result of details.Results; track result) {
           <tr>
             <td>{{ result.position }}</td>
             <td>
@@ -40,10 +41,8 @@ import { ScheduleResultsService } from './data-access/schedule-results.service';
             <td>{{ result.points }}</td>
           </tr>
 
-          } }
+          }
         </tbody>
-
-        <tbody></tbody>
       </table>
     </div>
   `,
@@ -81,6 +80,19 @@ import { ScheduleResultsService } from './data-access/schedule-results.service';
   ],
 })
 export class ScheduleDetailsComponent {
+  @Input() id!: string;
+  details!: Race;
+
   scheduleResultsService = inject(ScheduleResultsService);
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngAfterViewInit() {
+    // this.round = this.route.snapshot.paramMap.get('id')!;
+    this.scheduleResultsService
+      .getResultsByRound(this.id)
+      .pipe(
+        map((response) => (this.details = response.MRData.RaceTable.Races[0]))
+      )
+      .subscribe();
+  }
 }
