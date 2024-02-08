@@ -43,6 +43,10 @@ import { ConstructorsService } from './data-access/teams.service';
       a {
         text-decoration: none;
         color: black;
+        transition: color 0.3s;
+      }
+      a:hover {
+        color: blue; /* Cambia el color del texto cuando se pasa el cursor sobre el enlace */
       }
       .container {
         display: flex;
