@@ -41,6 +41,10 @@ import { ScheduleService } from './data-access/schedule.service';
   `,
   styles: [
     `
+      a {
+        text-decoration: none;
+        color: black;
+      }
       .container {
         display: flex;
         flex-direction: column;

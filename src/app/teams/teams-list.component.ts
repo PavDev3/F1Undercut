@@ -40,6 +40,10 @@ import { ConstructorsService } from './data-access/teams.service';
   </div>`,
   styles: [
     `
+      a {
+        text-decoration: none;
+        color: black;
+      }
       .container {
         display: flex;
         flex-direction: column;

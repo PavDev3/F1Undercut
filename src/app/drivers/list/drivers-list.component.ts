@@ -43,6 +43,10 @@ import { DriversService } from './data-access/drivers.service';
   `,
   styles: [
     `
+      a {
+        text-decoration: none;
+        color: black;
+      }
       .container {
         display: flex;
         flex-direction: column;

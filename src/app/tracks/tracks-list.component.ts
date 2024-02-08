@@ -43,6 +43,10 @@ import { TracksService } from './data-access/tracks.service';
   `,
   styles: [
     `
+      a {
+        text-decoration: none;
+        color: black;
+      }
       .container {
         display: flex;
         flex-direction: column;

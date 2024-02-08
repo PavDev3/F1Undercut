@@ -23,7 +23,9 @@ import { TeamsListComponent } from '../teams/teams-list.component';
   template: `
     <header>
       <div>
-        <h1>F1 Undercut</h1>
+        <a [routerLink]="['']">
+          <h1>>>F1 Undercut<<</h1>
+        </a>
         <button mat-flat-button routerLink="/last-results">Last Results</button>
         <button mat-flat-button routerLink="/standings">Standings</button>
         <button mat-flat-button routerLink="/schedule">Schedule</button>
@@ -35,6 +37,10 @@ import { TeamsListComponent } from '../teams/teams-list.component';
   `,
   styles: [
     `
+      a {
+        text-decoration: none;
+        color: black;
+      }
       header {
         display: flex;
         justify-content: space-around;
