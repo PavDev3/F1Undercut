@@ -25,6 +25,10 @@ table {
   margin-top: 20px;
   border-collapse: collapse;
 }
+.table-wrapper {
+  overflow-x: auto;
+  width: 90%; /* Ajusta el ancho de la tabla según tus necesidades */
+}
 
 th,
 td {
@@ -42,6 +46,8 @@ th {
   }
 
   th:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4),
   td:nth-child(3) {
     display: none;
   }
