@@ -68,6 +68,7 @@ import { DriversService } from './data-access/drivers.service';
         width: 100%;
         margin-top: 20px;
         border-collapse: collapse;
+        padding-left: 10px;
       }
 
       th,
