@@ -10,74 +10,9 @@ import { Race } from './interface/schedule-results.interface';
   standalone: true,
   selector: 'schedule-details',
   imports: [JsonPipe, NgIf],
-  template: `
-    <div class="container" *ngIf="details">
-      <h2>Results</h2>
-      <h3>{{ details.raceName }}</h3>
-      <table class="lastResults">
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Driver</th>
-            <th>Constructor</th>
-            <th>Laps</th>
-            <th>Time</th>
-            <th>Status</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (result of details.Results; track result) {
-          <tr>
-            <td>{{ result.position }}</td>
-            <td>
-              {{ result.Driver.givenName }}
-              {{ result.Driver.familyName }}
-            </td>
-            <td>{{ result.Constructor.name }}</td>
-            <td>{{ result.laps }}</td>
-            <td>{{ result.Time?.time }}</td>
-            <td>{{ result.status }}</td>
-            <td>{{ result.points }}</td>
-          </tr>
+  templateUrl: './ui/schedule-details.component.html',
 
-          }
-        </tbody>
-      </table>
-    </div>
-  `,
-  styles: [
-    `
-      .row {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        margin-bottom: 20px;
-      }
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      table {
-        width: 80%;
-        margin-top: 20px;
-        border-collapse: collapse;
-      }
-
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-      }
-
-      th {
-        background-color: #f2f2f2;
-      }
-    `,
-  ],
+  styleUrls: ['./ui/schedule-details.component.scss'],
 })
 export class ScheduleDetailsComponent {
   @Input() id!: string;
