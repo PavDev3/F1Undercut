@@ -28,6 +28,9 @@ th {
 }
 
 @media (max-width: 767px) {
+  .column {
+    justify-content: center;
+  }
   th:nth-child(3),
   th:nth-child(4),
   th:nth-child(6),

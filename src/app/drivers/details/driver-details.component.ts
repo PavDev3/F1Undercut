@@ -8,6 +8,7 @@ import { Driver } from '../list/interfaces/drivers.interface';
   standalone: true,
   selector: 'driver-details',
   templateUrl: './ui/driver-details.component.html',
+  styleUrls: ['./ui/driver-details.component.scss'],
   imports: [DateFormatPipe],
 })
 export class DriverDetailsComponent implements OnInit {

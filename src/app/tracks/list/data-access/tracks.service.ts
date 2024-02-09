@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { EMPTY, catchError, map } from 'rxjs';
-import { _tracksBySeason } from '../../../../environments/environment';
+import { _tracksBySeason } from '../../../../../environments/environment';
 import { Tracks, TracksResponse } from '../interfaces/tracks.interface';
 
 export interface TracksBySeason {

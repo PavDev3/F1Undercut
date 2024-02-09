@@ -1,3 +1,11 @@
+a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+}
+a:hover {
+  color: blue;
+}
 .row {
   display: flex;
   justify-content: space-around;
@@ -11,13 +19,9 @@
   align-items: center;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-  transition: color 0.3s;
-}
-a:hover {
-  color: blue;
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
 }
 
 table {
@@ -36,17 +40,10 @@ td {
 th {
   background-color: #f2f2f2;
 }
-@media (max-width: 767px) {
-  .column {
-    justify-content: center;
-  }
 
-  th:nth-child(3),
-  td:nth-child(3) {
+@media (max-width: 767px) {
+  th:nth-child(4),
+  td:nth-child(4) {
     display: none;
-  }
-  th,
-  td {
-    padding-left: 10px;
   }
 }

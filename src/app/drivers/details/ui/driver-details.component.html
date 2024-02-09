@@ -1,4 +1,4 @@
-<div>
+<div class="driver-details-container">
   <h2>Driver Details</h2>
   <div>
     <strong>Driver Name:</strong> {{ driver.givenName }}
@@ -11,6 +11,8 @@
   </div>
   <div>
     <strong>Wikipedia:</strong>
-    <a [href]="driver.url" target="_blank"> {{ driver.url }}</a>
+    <a class="url-link" [href]="driver.url" target="_blank">
+      {{ driver.url }}</a
+    >
   </div>
 </div>

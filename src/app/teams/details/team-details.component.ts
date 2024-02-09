@@ -7,6 +7,7 @@ import { Constructors } from '../list/interfaces/teams.interface';
   standalone: true,
   selector: 'team-details',
   templateUrl: './ui/team-details.component.html',
+  styleUrls: ['./ui/team-details.component.scss'],
 })
 export class TeamDetailsComponent {
   constructorId!: string;

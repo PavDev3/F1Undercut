@@ -44,7 +44,7 @@ export const routes: Routes = [
   {
     path: 'tracks',
     loadComponent: () =>
-      import('./tracks/tracks-list.component').then(
+      import('./tracks/list/tracks-list.component').then(
         (m) => m.TrackListComponent
       ),
   },

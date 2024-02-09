@@ -1,0 +1,30 @@
+a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+}
+a:hover {
+  color: blue; /* Cambia el color del texto cuando se pasa el cursor sobre el enlace */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  width: 50%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
