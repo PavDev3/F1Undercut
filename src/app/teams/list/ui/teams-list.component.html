@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Teams</h1>
+  <h2>Season {{ constructorsService.season() }}</h2>
+  <div class="fflag fflag-ES"></div>
+  <table class="constructorList">
+    <thead>
+      <tr>
+        <th>Team Name</th>
+        <th>Nationality</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (constructor of constructorsService.constructors(); track
+      constructor.constructorId) {
+      <tr>
+        <td>
+          <a [routerLink]="['/team-details', constructor.constructorId]"
+            >{{ constructor.name }}
+          </a>
+        </td>
+        <td>
+          <div
+            class="fflag ff-md {{ 'fflag-' + constructor.nationality }}"
+          ></div>
+          {{ constructor.nationality }}
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -7,31 +7,7 @@ import { Driver } from '../list/interfaces/drivers.interface';
 @Component({
   standalone: true,
   selector: 'driver-details',
-  template: `
-    <div>
-      <h2>Driver Details</h2>
-      <div>
-        <strong>Driver Name:</strong> {{ driver.givenName }}
-        {{ driver.familyName }}
-      </div>
-      <div><strong>Nationality:</strong> {{ driver.nationality }}</div>
-      <div><strong>Permanent Number:</strong> {{ driver.permanentNumber }}</div>
-      <div>
-        <strong>Date of birth:</strong> {{ driver.dateOfBirth | dateFormat }}
-      </div>
-      <div>
-        <strong>Wikipedia:</strong>
-        <a [href]="driver.url" target="_blank"> {{ driver.url }}</a>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      div {
-        margin: 20px;
-      }
-    `,
-  ],
+  templateUrl: './ui/driver-details.component.html',
   imports: [DateFormatPipe],
 })
 export class DriverDetailsComponent implements OnInit {

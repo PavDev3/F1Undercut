@@ -23,14 +23,16 @@ export const routes: Routes = [
   {
     path: 'schedule',
     loadComponent: () =>
-      import('./schedule/schedule-list.component').then(
+      import('./schedule/list/schedule-list.component').then(
         (m) => m.ScheduleListComponent
       ),
   },
   {
     path: 'teams',
     loadComponent: () =>
-      import('./teams/teams-list.component').then((m) => m.TeamsListComponent),
+      import('./teams/list/teams-list.component').then(
+        (m) => m.TeamsListComponent
+      ),
   },
   {
     path: 'last-results',

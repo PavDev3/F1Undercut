@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DriversListComponent } from '../drivers/list/drivers-list.component';
-import { ScheduleListComponent } from '../schedule/schedule-list.component';
+import { ScheduleListComponent } from '../schedule/list/schedule-list.component';
 import { StandingsListComponent } from '../standings/standings-list.component';
-import { TeamsListComponent } from '../teams/teams-list.component';
+import { TeamsListComponent } from '../teams/list/teams-list.component';
 
 @Component({
   standalone: true,

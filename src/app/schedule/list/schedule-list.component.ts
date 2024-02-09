@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DateFormatPipe, HoraFormatoPipe } from '../shared/date-format.pipe';
+import { DateFormatPipe, HoraFormatoPipe } from '../../shared/date-format.pipe';
 import { ScheduleService } from './data-access/schedule.service';
 
 @Component({

@@ -1,6 +1,7 @@
-<div class="container" *ngIf="details">
-  <h2>Results</h2>
-  <h3>{{ details.raceName }}</h3>
+<div class="container">
+  <h1>Last Results</h1>
+  <h2>Season: {{ currentService.season() }}</h2>
+  <h3>Round: {{ currentService.round() }}</h3>
 
   <table class="lastResults">
     <thead>
@@ -15,7 +16,8 @@
       </tr>
     </thead>
     <tbody>
-      @for (result of details.Results; track result) {
+      @for (race of currentService.Races(); track currentService.Races) { @for
+      (result of race.Results; track result) {
       <tr>
         <td>{{ result.position }}</td>
         <td>
@@ -29,7 +31,9 @@
         <td>{{ result.points }}</td>
       </tr>
 
-      }
+      } }
     </tbody>
+
+    <tbody></tbody>
   </table>
 </div>

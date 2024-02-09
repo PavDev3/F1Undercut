@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { EMPTY, catchError, map } from 'rxjs';
-import { _scheduleBySeason } from '../../../../environments/environment';
+import { _scheduleBySeason } from '../../../../../environments/environment';
 import { Race, ScheduleResponse } from '../interfaces/schedule.interface';
 
 export interface ScheduleBySeason {

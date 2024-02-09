@@ -1,0 +1,16 @@
+<div>
+  <h2>Driver Details</h2>
+  <div>
+    <strong>Driver Name:</strong> {{ driver.givenName }}
+    {{ driver.familyName }}
+  </div>
+  <div><strong>Nationality:</strong> {{ driver.nationality }}</div>
+  <div><strong>Permanent Number:</strong> {{ driver.permanentNumber }}</div>
+  <div>
+    <strong>Date of birth:</strong> {{ driver.dateOfBirth | dateFormat }}
+  </div>
+  <div>
+    <strong>Wikipedia:</strong>
+    <a [href]="driver.url" target="_blank"> {{ driver.url }}</a>
+  </div>
+</div>

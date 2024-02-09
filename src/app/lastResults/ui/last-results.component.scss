@@ -34,6 +34,11 @@ th {
   td:nth-child(3),
   td:nth-child(4),
   td:nth-child(6) {
-    display: none;
+    display: none; /* Oculta las columnas "Constructor", "Laps" y "Status" en dispositivos móviles */
+  }
+
+  th,
+  td {
+    padding: 4px; /* Tamaño de las celdas para dispositivos móviles */
   }
 }
