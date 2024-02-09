@@ -48,3 +48,13 @@ body {
   margin: 0;
   font-family: "F1", "Helvetica Neue", sans-serif;
 }
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  /* Estilos aquí */
+}
+
+/* Estilos para dispositivos de escritorio */
+@media (min-width: 768px) {
+  /* Estilos aquí */
+}
