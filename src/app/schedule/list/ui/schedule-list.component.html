@@ -21,9 +21,9 @@
             >
           </td>
           <td>{{ races.date | dateFormat }}</td>
-          <td>{{ races.FirstPractice.time | timeFormat }}</td>
-          <td>{{ races.Qualifying.time | timeFormat }}</td>
-          <td>{{ races.time | timeFormat }}</td>
+          <td>{{ races.FirstPractice.time? | timeFormat }}</td>
+          <td>{{ races.Qualifying.time? | timeFormat }}</td>
+          <td>{{ races.time? | timeFormat }}</td>
         </tr>
         }
       </tbody>
