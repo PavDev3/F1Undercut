@@ -21,9 +21,9 @@ export class DateFormatPipe implements PipeTransform {
   name: 'timeFormat',
 })
 export class HoraFormatoPipe implements PipeTransform {
-  transform(hora: string): string {
+  transform(hora: string | undefined): string {
     if (!hora) {
-      return hora;
+      return '-';
     }
     const horaSinZona = hora.split('Z')[0];
     return horaSinZona.substr(0, 5);

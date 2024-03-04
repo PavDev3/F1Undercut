@@ -11,9 +11,9 @@ export interface Race {
   raceName: string;
   Circuit: Circuit;
   date: string;
-  time: string;
-  FirstPractice: FirstPractice;
-  Qualifying: Qualifying;
+  time?: string;
+  FirstPractice?: FirstPractice;
+  Qualifying?: Qualifying;
 }
 
 // --- Circuit ---
@@ -34,7 +34,7 @@ export interface Location {
 
 // --- FirstPractice ---
 export interface FirstPractice {
-  time: string;
+  time?: string;
 }
 
 // --- SecondPractice ---
@@ -43,7 +43,7 @@ export interface FirstPractice {
 
 // --- Qualifying ---
 export interface Qualifying {
-  time: string;
+  time?: string;
 }
 
 // ------------------------------
