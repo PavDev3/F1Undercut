@@ -24,7 +24,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/browser
+          folder: dist/f1/browser
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
