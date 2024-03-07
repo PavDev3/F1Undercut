@@ -3,7 +3,9 @@ name: Build and Deploy
 
 on:
   push:
-    branches: "master"
+    branches: "gh-pages"
+    branches-ignore:
+      - "master"
   pull_request:
     branches: "master"
 
