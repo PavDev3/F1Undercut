@@ -1,12 +1,44 @@
-<div class="track-details-container">
-  <h2>Circuit Details</h2>
-  <div><strong>Circuit Name:</strong> {{ track.circuitName }}</div>
-  <div><strong>Country:</strong> {{ track.Location.country }}</div>
-  <div><strong>Locality:</strong> {{ track.Location.locality }}</div>
-  <div><strong>Latitude:</strong> {{ track.Location.lat }}</div>
-  <div><strong>Longitude:</strong> {{ track.Location.long }}</div>
-  <div>
-    <strong>Wikipedia:</strong>
-    <a class="url-link" [href]="track.url" target="_blank"> {{ track.url }}</a>
+<div class="container">
+  <div class="header">
+    <h1>Detalles del Circuito</h1>
+    <div class="track-name">
+      {{ track.circuitName }}
+    </div>
+  </div>
+
+  <div class="track-card">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">País</span>
+        <div class="value nationality">
+          <div
+            class="fflag ff-md {{
+              'fflag-' + track.Location.country.replaceAll(' ', '')
+            }}"
+          ></div>
+          <span>{{ track.Location.country }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Ciudad</span>
+        <span class="value">{{ track.Location.locality }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Coordenadas</span>
+        <div class="value coordinates">
+          <span>Lat: {{ track.Location.lat }}</span>
+          <span>Long: {{ track.Location.long }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Wikipedia</span>
+        <a class="value link" [href]="track.url" target="_blank">
+          Ver información del circuito
+        </a>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,54 +1,57 @@
-<div class="container text-center">
-  <div>
-    <h1>Standings</h1>
-    <h2>Season {{ standingsService.season() }}</h2>
+<div class="container">
+  <div class="header">
+    <h1>Clasificación</h1>
+    <div class="season-info">
+      <span>Temporada {{ standingsService.season() }}</span>
+    </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <h3>Drivers</h3>
-      <table class="standings-table-drivers">
+
+  <div class="standings-grid">
+    <div class="standings-section">
+      <h2>Pilotos</h2>
+      <table class="standings-table">
         <thead>
           <tr>
-            <th>Position</th>
-            <th>Driver</th>
-            <th>Points</th>
+            <th>Pos</th>
+            <th>Piloto</th>
+            <th>Puntos</th>
           </tr>
         </thead>
         <tbody>
           @for (standingsList of standingsService.StandingsLists(); track
-          standingsList.DriverStandings){ @for (Driver of
+          standingsList.DriverStandings) { @for (Driver of
           standingsList.DriverStandings; track Driver) {
           <tr>
-            <td>{{ Driver.position }}</td>
-            <td>
-              {{ Driver.Driver.givenName }}
-              {{ Driver.Driver.familyName }}
+            <td class="position">{{ Driver.position }}</td>
+            <td class="driver">
+              <span class="surname">{{ Driver.Driver.familyName }}</span>
+              <span class="firstname">{{ Driver.Driver.givenName }}</span>
             </td>
-            <td>{{ Driver.points }}</td>
+            <td class="points">{{ Driver.points }}</td>
           </tr>
           } }
         </tbody>
       </table>
     </div>
 
-    <div class="col">
-      <h3>Constructors</h3>
-      <table class="standings-table-constructors">
+    <div class="standings-section">
+      <h2>Constructores</h2>
+      <table class="standings-table">
         <thead>
           <tr>
-            <th>Position</th>
+            <th>Pos</th>
             <th>Constructor</th>
-            <th>Points</th>
+            <th>Puntos</th>
           </tr>
         </thead>
         <tbody>
           @for (standingsList of standingsConstructorService.StandingsLists();
           track standingsConstructorService.StandingsLists) { @for(Constructor
-          of standingsList.ConstructorStandings ; track Constructor) {
+          of standingsList.ConstructorStandings; track Constructor) {
           <tr>
-            <td>{{ Constructor.position }}</td>
-            <td>{{ Constructor.Constructor.name }}</td>
-            <td>{{ Constructor.points }}</td>
+            <td class="position">{{ Constructor.position }}</td>
+            <td class="constructor">{{ Constructor.Constructor.name }}</td>
+            <td class="points">{{ Constructor.points }}</td>
           </tr>
           } }
         </tbody>

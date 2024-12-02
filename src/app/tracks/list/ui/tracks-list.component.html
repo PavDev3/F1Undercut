@@ -1,30 +1,33 @@
 <div class="container">
-  <h1>Circuits</h1>
-  <h2>Season {{ tracksService.season() }}</h2>
-  <table class="trackList">
+  <div class="header">
+    <h1>Circuitos</h1>
+    <div class="season-info">
+      <span>Temporada {{ tracksService.season() }}</span>
+    </div>
+  </div>
+
+  <table class="modern-table">
     <thead>
       <tr>
-        <th>Track Name</th>
-        <th>Country</th>
+        <th>Circuito</th>
+        <th>País</th>
       </tr>
     </thead>
-
     <tbody>
       @for (track of tracksService.tracks(); track track.circuitId) {
       <tr>
-        <td>
-          <a [routerLink]="['/track-details', track.circuitId]"
-            >{{ track.circuitName }}
+        <td class="track">
+          <a [routerLink]="['/track-details', track.circuitId]">
+            {{ track.circuitName }}
           </a>
         </td>
-
-        <td>
+        <td class="nationality">
           <div
             class="fflag ff-md {{
               'fflag-' + track.Location.country.replaceAll(' ', '')
             }}"
           ></div>
-          {{ track.Location.country }}
+          <span>{{ track.Location.country }}</span>
         </td>
       </tr>
       }

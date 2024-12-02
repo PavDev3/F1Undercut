@@ -1,9 +1,27 @@
-<div class="team-details-container">
-  <h2>Team Details</h2>
-  <div><strong>Constructor Name:</strong> {{ team.name }}</div>
-  <div><strong>Nationality:</strong> {{ team.nationality }}</div>
-  <div>
-    <strong>Wikipedia:</strong>
-    <a class="url-link" [href]="team.url" target="_blank"> {{ team.url }}</a>
+<div class="container">
+  <div class="header">
+    <h1>Detalles del Equipo</h1>
+    <div class="team-name">
+      {{ team.name }}
+    </div>
+  </div>
+
+  <div class="team-card">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Nacionalidad</span>
+        <div class="value nationality">
+          <div class="fflag ff-md {{ 'fflag-' + team.nationality }}"></div>
+          <span>{{ team.nationality }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Wikipedia</span>
+        <a class="value link" [href]="team.url" target="_blank">
+          Ver historia del equipo
+        </a>
+      </div>
+    </div>
   </div>
 </div>

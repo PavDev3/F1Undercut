@@ -1,18 +1,41 @@
-<div class="driver-details-container">
-  <h2>Driver Details</h2>
-  <div>
-    <strong>Driver Name:</strong> {{ driver.givenName }}
-    {{ driver.familyName }}
+<div class="container">
+  <div class="header">
+    <h1>Detalles del Piloto</h1>
+    <div class="driver-name">
+      {{ driver.givenName }} {{ driver.familyName }}
+    </div>
   </div>
-  <div><strong>Nationality:</strong> {{ driver.nationality }}</div>
-  <div><strong>Permanent Number:</strong> {{ driver.permanentNumber }}</div>
-  <div>
-    <strong>Date of birth:</strong> {{ driver.dateOfBirth | dateFormat }}
-  </div>
-  <div>
-    <strong>Wikipedia:</strong>
-    <a class="url-link" [href]="driver.url" target="_blank">
-      {{ driver.url }}</a
-    >
+
+  <div class="driver-card">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Nacionalidad</span>
+        <div class="value nationality">
+          <div
+            class="fflag ff-md {{
+              'fflag-' + driver.nationality.replaceAll(' ', '')
+            }}"
+          ></div>
+          <span>{{ driver.nationality }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Número Permanente</span>
+        <span class="value number">{{ driver.permanentNumber }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Fecha de Nacimiento</span>
+        <span class="value">{{ driver.dateOfBirth | dateFormat }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Wikipedia</span>
+        <a class="value link" [href]="driver.url" target="_blank">
+          Ver biografía
+        </a>
+      </div>
+    </div>
   </div>
 </div>

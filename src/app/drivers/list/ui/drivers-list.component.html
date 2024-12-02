@@ -1,31 +1,36 @@
 <div class="container">
-  <h1>Driver List</h1>
-  <h2>Season {{ driversService.season() }}</h2>
+  <div class="header">
+    <h1>Pilotos</h1>
+    <div class="season-info">
+      <span>Temporada {{ driversService.season() }}</span>
+    </div>
+  </div>
 
-  <table class="driverList">
+  <table class="modern-table">
     <thead>
       <tr>
-        <th>Number</th>
-        <th>Driver</th>
-        <th>Nationality</th>
+        <th>Número</th>
+        <th>Piloto</th>
+        <th>Nacionalidad</th>
       </tr>
     </thead>
     <tbody>
       @for (driver of driversService.drivers(); track driver.driverId) {
       <tr>
-        <td>{{ driver.permanentNumber }}</td>
-        <td>
+        <td class="number">{{ driver.permanentNumber }}</td>
+        <td class="driver">
           <a [routerLink]="['/driver-details', driver.driverId]">
-            {{ driver.givenName }} {{ driver.familyName }}
+            <span class="surname">{{ driver.familyName }}</span>
+            <span class="firstname">{{ driver.givenName }}</span>
           </a>
         </td>
-        <td>
+        <td class="nationality">
           <div
             class="fflag ff-md {{
               'fflag-' + driver.nationality.replaceAll(' ', '')
-            }} "
+            }}"
           ></div>
-          {{ driver.nationality }}
+          <span>{{ driver.nationality }}</span>
         </td>
       </tr>
       }
