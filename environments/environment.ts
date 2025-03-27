@@ -1,14 +1,14 @@
 export const _currentResult =
-  'https://ergast.com/api/f1/current/last/results.json';
+  'https://api.jolpi.ca/ergast/f1/2025/last/results';
 
-export const _driversBySeason = 'https://ergast.com/api/f1/2024/drivers.json';
-export const _tracksBySeason = 'https://ergast.com/api/f1/2024/circuits.json';
+export const _driversBySeason = 'https://api.jolpi.ca/ergast/f1/2025/drivers';
+export const _tracksBySeason = 'https://api.jolpi.ca/ergast/f1/2025/circuits';
 export const _constructorsBySeason =
-  'https://ergast.com/api/f1/2024/constructors.json';
+  'https://api.jolpi.ca/ergast/f1/2025/constructors';
 
-export const _scheduleBySeason = 'https://ergast.com/api/f1/2024.json';
+export const _scheduleBySeason = 'https://api.jolpi.ca/ergast/f1/2025/races';
 export const _standingsDriversBySeason =
-  'https://ergast.com/api/f1/current/driverStandings.json';
+  'https://api.jolpi.ca/ergast/f1/2025/driverstandings';
 export const _standingsConstructorsBySeason =
-  'https://ergast.com/api/f1/current/constructorStandings.json';
-export const _scheduleDetailsResults = 'https://ergast.com/api/f1/2024/';
+  'https://api.jolpi.ca/ergast/f1/2025/constructorstandings';
+export const _scheduleDetailsResults = 'https://api.jolpi.ca/ergast/f1/2025/';

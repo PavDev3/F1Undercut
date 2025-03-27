@@ -49,10 +49,14 @@ export class CurrentService {
   private fetchFormulaCurrent() {
     return this.http.get<currentResponse>(`${_currentResult}`).pipe(
       catchError((err) => {
-        console.error('Error fetching current results');
+        console.error('Error fetching current results:', err);
+        console.log('URL attempted:', _currentResult);
         return EMPTY;
       }),
-      map((response) => response)
+      map((response) => {
+        console.log('API Response:', response); // Para debugging
+        return response;
+      })
     );
   }
 }
