@@ -35,7 +35,13 @@ select {
 
 @media (max-width: 900px) {
   .season-bar {
-    top: 10px;
-    right: 10px;
+    position: sticky;
+    top: 62px;
+    right: auto;
+    left: 0;
+    margin: 8px 12px 0;
+    width: calc(100% - 24px);
+    justify-content: space-between;
+    border-radius: 14px;
   }
 }
