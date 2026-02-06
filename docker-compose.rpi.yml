@@ -1,6 +1,6 @@
 services:
   f1-undercut-web:
-    image: ghcr.io/PavDev3/f1-undercut-web:latest
+    image: ghcr.io/pavdev3/f1-undercut-web:latest
     container_name: f1-undercut-web
     restart: unless-stopped
     ports:
