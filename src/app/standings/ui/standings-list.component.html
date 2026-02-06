@@ -6,56 +6,75 @@
     </div>
   </div>
 
-  <div class="standings-grid">
-    <div class="standings-section">
-      <h2>Pilotos</h2>
-      <table class="standings-table">
-        <thead>
-          <tr>
-            <th>Pos</th>
-            <th>Piloto</th>
-            <th>Puntos</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (standingsList of standingsService.StandingsLists(); track
-          standingsList.DriverStandings) { @for (Driver of
-          standingsList.DriverStandings; track Driver) {
-          <tr>
-            <td class="position">{{ Driver.position }}</td>
-            <td class="driver">
-              <span class="surname">{{ Driver.Driver.familyName }}</span>
-              <span class="firstname">{{ Driver.Driver.givenName }}</span>
-            </td>
-            <td class="points">{{ Driver.points }}</td>
-          </tr>
-          } }
-        </tbody>
-      </table>
+  @if (standingsService.loading() || standingsConstructorService.loading()) {
+    <div class="state">Cargando clasificaciones...</div>
+  } @else if (standingsService.error() || standingsConstructorService.error()) {
+    <div class="state error">
+      {{
+        standingsService.error() || standingsConstructorService.error()
+      }}
     </div>
+  } @else {
+    <div class="standings-grid">
+      <div class="standings-section">
+        <h2>Pilotos</h2>
+        <table class="standings-table" motionReveal>
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Piloto</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (standingsList of standingsService.StandingsLists(); track
+            standingsList.DriverStandings) { @for (Driver of
+            standingsList.DriverStandings; track Driver) {
+            <tr>
+              <td class="position" [countUp]="Driver.position">
+                {{ Driver.position }}
+              </td>
+              <td class="driver">
+                <span class="surname">{{ Driver.Driver.familyName }}</span>
+                <span class="firstname">{{ Driver.Driver.givenName }}</span>
+              </td>
+              <td class="points" [countUp]="Driver.points">
+                {{ Driver.points }}
+              </td>
+            </tr>
+            } }
+          </tbody>
+        </table>
+      </div>
 
-    <div class="standings-section">
-      <h2>Constructores</h2>
-      <table class="standings-table">
-        <thead>
-          <tr>
-            <th>Pos</th>
-            <th>Constructor</th>
-            <th>Puntos</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (standingsList of standingsConstructorService.StandingsLists();
-          track standingsConstructorService.StandingsLists) { @for(Constructor
-          of standingsList.ConstructorStandings; track Constructor) {
-          <tr>
-            <td class="position">{{ Constructor.position }}</td>
-            <td class="constructor">{{ Constructor.Constructor.name }}</td>
-            <td class="points">{{ Constructor.points }}</td>
-          </tr>
-          } }
-        </tbody>
-      </table>
+      <div class="standings-section">
+        <h2>Constructores</h2>
+        <table class="standings-table" motionReveal>
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Constructor</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (standingsList of standingsConstructorService.StandingsLists();
+            track standingsConstructorService.StandingsLists) {
+            @for(Constructor of standingsList.ConstructorStandings; track
+            Constructor) {
+            <tr>
+              <td class="position" [countUp]="Constructor.position">
+                {{ Constructor.position }}
+              </td>
+              <td class="constructor">{{ Constructor.Constructor.name }}</td>
+              <td class="points" [countUp]="Constructor.points">
+                {{ Constructor.points }}
+              </td>
+            </tr>
+            } }
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  }
 </div>

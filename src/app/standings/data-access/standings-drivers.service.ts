@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { EMPTY, catchError, map } from 'rxjs';
-import { _standingsDriversBySeason } from '../../../../environments/environment';
+import { EMPTY, catchError, finalize, map, switchMap, filter } from 'rxjs';
+import { BASE_URL } from '../../../../environments/environment';
+import { SeasonStoreService } from '../../shared/data-access/season-store.service';
+import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   StandingsDriversResponse,
   StandingsLists,
@@ -17,6 +19,7 @@ export interface StandingsBySeason {
 })
 export class StandingsService {
   private http = inject(HttpClient);
+  private seasonStore = inject(SeasonStoreService);
 
   // state
 
@@ -24,32 +27,41 @@ export class StandingsService {
     season: '',
     StandingsLists: [],
   });
+  loading = signal(true);
+  error = signal<string | null>(null);
 
   // selectors
   season = computed(() => this.state().season);
   StandingsLists = computed(() => this.state().StandingsLists);
 
-  // sources
-  standingsDriversBySeason$ = this.fetchStandingsDriversBySeason();
-
   constructor() {
-    // reducers
-
-    this.standingsDriversBySeason$.subscribe((response) => {
-      this.state.update((state) => ({
-        ...state,
-        season: response.MRData.StandingsTable.season,
-        StandingsLists: response.MRData.StandingsTable.StandingsLists,
-      }));
-    });
+    toObservable(this.seasonStore.selectedSeason)
+      .pipe(
+        filter((season) => Boolean(season)),
+        switchMap(() => this.fetchStandingsDriversBySeason()),
+        takeUntilDestroyed()
+      )
+      .subscribe((response) => {
+        this.state.update((state) => ({
+          ...state,
+          season: response.MRData.StandingsTable.season,
+          StandingsLists: response.MRData.StandingsTable.StandingsLists,
+        }));
+      });
   }
 
   private fetchStandingsDriversBySeason() {
+    this.loading.set(true);
+    this.error.set(null);
     return this.http
-      .get<StandingsDriversResponse>(`${_standingsDriversBySeason}`)
+      .get<StandingsDriversResponse>(
+        `${BASE_URL}/${this.seasonStore.selectedSeason()}/driverstandings.json`
+      )
       .pipe(
+        finalize(() => this.loading.set(false)),
         catchError((err) => {
-          console.error('Error');
+          console.error('Error fetching driver standings:', err);
+          this.error.set('No se pudo cargar la clasificación de pilotos.');
           return EMPTY;
         }),
         map((response) => response)

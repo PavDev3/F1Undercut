@@ -1,41 +1,112 @@
 <div class="container">
   <div class="header">
     <h1>Detalles del Piloto</h1>
-    <div class="driver-name">
-      {{ driver.givenName }} {{ driver.familyName }}
-    </div>
+    @if (driver()) {
+      <div class="driver-name">
+        {{ driver()?.givenName }} {{ driver()?.familyName }}
+      </div>
+    }
   </div>
 
-  <div class="driver-card">
-    <div class="info-grid">
-      <div class="info-item">
-        <span class="label">Nacionalidad</span>
-        <div class="value nationality">
-          <div
-            class="fflag ff-md {{
-              'fflag-' + driver.nationality.replaceAll(' ', '')
-            }}"
-          ></div>
-          <span>{{ driver.nationality }}</span>
+  @if (driversService.loading()) {
+    <div class="state">Cargando piloto...</div>
+  } @else if (driversService.error()) {
+    <div class="state error">{{ driversService.error() }}</div>
+  } @else if (driver()) {
+    <div class="driver-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Nacionalidad</span>
+          <div class="value nationality">
+            <div class="fflag ff-md {{ 'fflag-' + (driver()?.nationality | flagClass) }}"></div>
+            <span>{{ driver()?.nationality }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Número Permanente</span>
+          <span class="value number">{{ driver()?.permanentNumber }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Fecha de Nacimiento</span>
+          <span class="value">
+            {{ (driver()?.dateOfBirth ?? '') | dateFormat }}
+          </span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Wikipedia</span>
+          <a class="value link" [href]="driver()?.url" target="_blank">
+            Ver biografía
+          </a>
         </div>
       </div>
-
-      <div class="info-item">
-        <span class="label">Número Permanente</span>
-        <span class="value number">{{ driver.permanentNumber }}</span>
-      </div>
-
-      <div class="info-item">
-        <span class="label">Fecha de Nacimiento</span>
-        <span class="value">{{ driver.dateOfBirth | dateFormat }}</span>
-      </div>
-
-      <div class="info-item">
-        <span class="label">Wikipedia</span>
-        <a class="value link" [href]="driver.url" target="_blank">
-          Ver biografía
-        </a>
-      </div>
     </div>
-  </div>
+    <div class="wiki-card">
+      <h2>Sobre</h2>
+      @if (wikiLoading()) {
+        <div class="state">Cargando información adicional...</div>
+      } @else if (wikiError()) {
+        <div class="state">{{ wikiError() }}</div>
+      } @else if (wiki()) {
+        <div class="wiki-content">
+          @if (wiki()?.thumbnail?.source) {
+            <img
+              class="wiki-image"
+              [src]="wiki()?.thumbnail?.source"
+              [alt]="wiki()?.title || 'Imagen'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ wiki()?.title }}</div>
+            <div class="wiki-description">{{ wiki()?.description }}</div>
+            <p class="wiki-extract">{{ wiki()?.extract }}</p>
+            @if (wiki()?.content_urls?.desktop?.page) {
+              <a
+                class="wiki-link"
+                [href]="wiki()?.content_urls?.desktop?.page"
+                target="_blank"
+              >
+                Ver en Wikipedia
+              </a>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin información adicional.</div>
+      }
+    </div>
+    <div class="wiki-card">
+      <h2>Datos OpenF1</h2>
+      @if (openF1Loading()) {
+        <div class="state">Cargando datos deportivos...</div>
+      } @else if (openF1Error()) {
+        <div class="state">{{ openF1Error() }}</div>
+      } @else if (openF1()) {
+        <div class="wiki-content">
+          @if (openF1()?.headshot_url) {
+            <img
+              class="wiki-image"
+              [src]="openF1()?.headshot_url"
+              [alt]="openF1()?.full_name || 'Piloto'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ openF1()?.full_name }}</div>
+            <div class="wiki-description">{{ openF1()?.team_name }}</div>
+            <p class="wiki-extract">
+              Número {{ openF1()?.driver_number }}
+            </p>
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin datos deportivos adicionales.</div>
+      }
+    </div>
+  } @else {
+    <div class="state">No se encontró el piloto.</div>
+  }
 </div>

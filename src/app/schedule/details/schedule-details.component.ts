@@ -1,33 +1,35 @@
-import { Component, Input, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { map } from 'rxjs';
-
-import { JsonPipe, NgIf } from '@angular/common';
-import { ScheduleResultsService } from './data-access/schedule-results.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgIf } from '@angular/common';
+import { ScheduleResultsService } from './data-access';
+import { MotionRevealDirective } from '../../shared/directives/motion-reveal.directive';
 import { Race } from './interface/schedule-results.interface';
 
 @Component({
   standalone: true,
   selector: 'schedule-details',
-  imports: [JsonPipe, NgIf],
+  imports: [NgIf, MotionRevealDirective],
   templateUrl: './ui/schedule-details.component.html',
-
   styleUrls: ['./ui/schedule-details.component.scss'],
 })
-export class ScheduleDetailsComponent {
+export class ScheduleDetailsComponent implements OnInit {
   @Input() id!: string;
-  details!: Race;
+  details: Race | null = null;
 
   scheduleResultsService = inject(ScheduleResultsService);
-  constructor(private route: ActivatedRoute) {}
+  private destroyRef = inject(DestroyRef);
 
-  ngAfterViewInit() {
-    // this.round = this.route.snapshot.paramMap.get('id')!;
+  ngOnInit() {
+    if (!this.id) {
+      return;
+    }
     this.scheduleResultsService
       .getResultsByRound(this.id)
       .pipe(
-        map((response) => (this.details = response.MRData.RaceTable.Races[0]))
+        map((response) => response.MRData.RaceTable.Races[0] ?? null),
+        takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe();
+      .subscribe((race) => (this.details = race));
   }
 }

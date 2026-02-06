@@ -1,29 +1,32 @@
 @import "../../../shared/styles/shared-styles.scss";
 
 .track-name {
-  font-size: 1.5rem;
-  color: #666;
-  margin-top: 10px;
+  font-size: 1.4rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .track-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  padding: 30px;
+  background: var(--color-surface);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-1);
+  padding: 28px;
   margin-top: 20px;
-  transition: transform 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2);
   }
 }
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
 }
 
 .info-item {
@@ -32,16 +35,16 @@
   gap: 8px;
 
   .label {
-    font-size: 0.9rem;
-    color: #666;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
   }
 
   .value {
-    font-size: 1.1rem;
-    color: #15151e;
-    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--color-text);
+    font-weight: 600;
 
     &.nationality {
       display: flex;
@@ -49,7 +52,7 @@
       gap: 10px;
 
       .fflag {
-        margin-right: 8px;
+        margin-right: 6px;
       }
     }
 
@@ -57,19 +60,78 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      font-family: monospace;
-      font-size: 1rem;
+      font-family: "Courier New", monospace;
+      font-size: 0.98rem;
+      color: var(--color-text-muted);
     }
 
     &.link {
-      color: #1155cc;
+      color: #9cc2ff;
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s ease;
 
       &:hover {
-        color: #e10600;
+        color: var(--color-accent-2);
       }
     }
+  }
+}
+
+.wiki-card {
+  margin-top: 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-1);
+  padding: 24px;
+
+  h2 {
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+  }
+}
+
+.wiki-content {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.wiki-image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: var(--shadow-1);
+}
+
+.wiki-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.wiki-description {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}
+
+.wiki-extract {
+  margin: 0 0 12px;
+  color: var(--color-text);
+}
+
+.wiki-link {
+  color: #9cc2ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-accent-2);
   }
 }
 
@@ -79,24 +141,10 @@
   }
 
   .info-grid {
-    gap: 20px;
+    gap: 18px;
   }
 
-  .info-item {
-    .label {
-      font-size: 0.8rem;
-    }
-
-    .value {
-      font-size: 1rem;
-
-      &.coordinates {
-        font-size: 0.9rem;
-      }
-    }
-  }
-
-  .track-name {
-    font-size: 1.3rem;
+  .wiki-content {
+    grid-template-columns: 1fr;
   }
 }
