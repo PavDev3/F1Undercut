@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { EMPTY, catchError, finalize, map, switchMap, filter } from 'rxjs';
 import { BASE_URL } from '../../../../environments/environment';
@@ -61,7 +61,13 @@ export class StandingsConstructorService {
         finalize(() => this.loading.set(false)),
         catchError((err) => {
           console.error('Error fetching constructor standings:', err);
-          this.error.set('No se pudo cargar la clasificación de constructores.');
+          if (err instanceof HttpErrorResponse && err.status === 429) {
+            this.error.set(
+              'Demasiadas solicitudes a la API. Espera unos segundos e intenta de nuevo.'
+            );
+          } else {
+            this.error.set('No se pudo cargar la clasificación de constructores.');
+          }
           return EMPTY;
         }),
         map((response) => response)
