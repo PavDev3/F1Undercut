@@ -40,13 +40,75 @@ $f1-theme: mat.define-light-theme(
   src: url("./assets/fonts/Formula1-Regular.otf") format("opentype");
 }
 
+:root {
+  color-scheme: light;
+  --color-bg: #0b0d12;
+  --color-bg-2: #11141b;
+  --color-surface: rgba(255, 255, 255, 0.06);
+  --color-surface-strong: rgba(255, 255, 255, 0.12);
+  --color-border: rgba(255, 255, 255, 0.14);
+  --color-text: #e8ebf0;
+  --color-text-muted: #a7adba;
+  --color-accent: #e10600;
+  --color-accent-2: #ff3b2f;
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --radius-1: 12px;
+  --radius-2: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
+  min-height: 100%;
 }
+
+html {
+  background: var(--color-bg);
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
 body {
   margin: 0;
   font-family: "F1", "Helvetica Neue", sans-serif;
+  background: transparent;
+  color: var(--color-text);
+  letter-spacing: 0.2px;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(225, 6, 0, 0.7);
+  outline-offset: 3px;
+}
+
+main {
+  position: relative;
+  padding: 32px 0 56px;
 }
 
 /* Estilos para dispositivos móviles */

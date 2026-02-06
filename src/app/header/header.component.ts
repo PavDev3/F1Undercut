@@ -1,50 +1,88 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [RouterLink, MatButtonModule],
-
+  imports: [RouterLink, RouterLinkActive, MatButtonModule],
   template: `
-    <header>
-      <div>
-        <a [routerLink]="['']">
-          <h1>>>F1 Undercut<<</h1>
-        </a>
-        <button mat-flat-button routerLink="/last-results">
-          Últimos Resultados
+    <header class="app-header">
+      <div class="brand">
+        <a class="logo" [routerLink]="['/']">F1 Undercut</a>
+        <button
+          class="menu-toggle"
+          type="button"
+          (click)="toggleMenu()"
+          [attr.aria-expanded]="isMenuOpen"
+          aria-label="Alternar menú de navegación"
+        >
+          <span></span>
+          <span></span>
         </button>
-        <button mat-flat-button routerLink="/standings">Clasificación</button>
-        <button mat-flat-button routerLink="/schedule">Calendario</button>
-        <button mat-flat-button routerLink="/drivers">Pilotos</button>
-        <button mat-flat-button routerLink="/teams">Escuderías</button>
-        <button mat-flat-button routerLink="/tracks">Circuitos</button>
       </div>
+      <nav class="nav" [class.open]="isMenuOpen">
+        <a
+          mat-flat-button
+          routerLink="/last-results"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Últimos Resultados
+        </a>
+        <a
+          mat-flat-button
+          routerLink="/standings"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Clasificación
+        </a>
+        <a
+          mat-flat-button
+          routerLink="/schedule"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Calendario
+        </a>
+        <a
+          mat-flat-button
+          routerLink="/drivers"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Pilotos
+        </a>
+        <a
+          mat-flat-button
+          routerLink="/teams"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Escuderías
+        </a>
+        <a
+          mat-flat-button
+          routerLink="/tracks"
+          routerLinkActive="is-active"
+          (click)="closeMenu()"
+        >
+          Circuitos
+        </a>
+      </nav>
     </header>
   `,
-  styles: [
-    `
-      a {
-        text-decoration: none;
-        color: black;
-      }
-      header {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background: grey;
-        padding: 10px;
-      }
-      h1 {
-        display: flex;
-        justify-content: space-around;
-      }
-      button {
-        margin: 8px;
-      }
-    `,
-  ],
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+}

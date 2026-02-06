@@ -1,44 +1,117 @@
 <div class="container">
   <div class="header">
     <h1>Detalles del Circuito</h1>
-    <div class="track-name">
-      {{ track.circuitName }}
-    </div>
+    @if (track()) {
+      <div class="track-name">{{ track()?.circuitName }}</div>
+    }
   </div>
 
-  <div class="track-card">
-    <div class="info-grid">
-      <div class="info-item">
-        <span class="label">País</span>
-        <div class="value nationality">
-          <div
-            class="fflag ff-md {{
-              'fflag-' + track.Location.country.replaceAll(' ', '')
-            }}"
-          ></div>
-          <span>{{ track.Location.country }}</span>
+  @if (tracksService.loading()) {
+    <div class="state">Cargando circuito...</div>
+  } @else if (tracksService.error()) {
+    <div class="state error">{{ tracksService.error() }}</div>
+  } @else if (track()) {
+    <div class="track-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">País</span>
+          <div class="value nationality">
+            <div
+              class="fflag ff-md {{
+                'fflag-' + (track()?.Location?.country | flagClass)
+              }}"
+            ></div>
+            <span>{{ track()?.Location?.country }}</span>
+          </div>
         </div>
-      </div>
 
-      <div class="info-item">
-        <span class="label">Ciudad</span>
-        <span class="value">{{ track.Location.locality }}</span>
-      </div>
-
-      <div class="info-item">
-        <span class="label">Coordenadas</span>
-        <div class="value coordinates">
-          <span>Lat: {{ track.Location.lat }}</span>
-          <span>Long: {{ track.Location.long }}</span>
+        <div class="info-item">
+          <span class="label">Ciudad</span>
+          <span class="value">{{ track()?.Location?.locality }}</span>
         </div>
-      </div>
 
-      <div class="info-item">
-        <span class="label">Wikipedia</span>
-        <a class="value link" [href]="track.url" target="_blank">
-          Ver información del circuito
-        </a>
+        <div class="info-item">
+          <span class="label">Coordenadas</span>
+          <div class="value coordinates">
+            <span>Lat: {{ track()?.Location?.lat }}</span>
+            <span>Long: {{ track()?.Location?.long }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Wikipedia</span>
+          <a class="value link" [href]="track()?.url" target="_blank">
+            Ver información del circuito
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="wiki-card">
+      <h2>Sobre</h2>
+      @if (wikiLoading()) {
+        <div class="state">Cargando información adicional...</div>
+      } @else if (wikiError()) {
+        <div class="state">{{ wikiError() }}</div>
+      } @else if (wiki()) {
+        <div class="wiki-content">
+          @if (wiki()?.thumbnail?.source) {
+            <img
+              class="wiki-image"
+              [src]="wiki()?.thumbnail?.source"
+              [alt]="wiki()?.title || 'Imagen'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ wiki()?.title }}</div>
+            <div class="wiki-description">{{ wiki()?.description }}</div>
+            <p class="wiki-extract">{{ wiki()?.extract }}</p>
+            @if (wiki()?.content_urls?.desktop?.page) {
+              <a
+                class="wiki-link"
+                [href]="wiki()?.content_urls?.desktop?.page"
+                target="_blank"
+              >
+                Ver en Wikipedia
+              </a>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin información adicional.</div>
+      }
+    </div>
+    <div class="wiki-card">
+      <h2>Datos OpenF1</h2>
+      @if (openF1Loading()) {
+        <div class="state">Cargando datos deportivos...</div>
+      } @else if (openF1Error()) {
+        <div class="state">{{ openF1Error() }}</div>
+      } @else if (openF1()) {
+        <div class="wiki-content">
+          @if (openF1()?.circuit_image) {
+            <img
+              class="wiki-image"
+              [src]="openF1()?.circuit_image"
+              [alt]="openF1()?.circuit_short_name || 'Circuito'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ openF1()?.meeting_name }}</div>
+            <div class="wiki-description">
+              {{ openF1()?.location }} · {{ openF1()?.country_name }}
+            </div>
+            <p class="wiki-extract">
+              Tipo: {{ openF1()?.circuit_type }}
+            </p>
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin datos deportivos adicionales.</div>
+      }
+    </div>
+  } @else {
+    <div class="state">No se encontró el circuito.</div>
+  }
 </div>

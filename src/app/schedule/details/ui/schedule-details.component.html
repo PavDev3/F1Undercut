@@ -1,38 +1,50 @@
-<div class="container" *ngIf="details">
+<div class="container">
   <div class="header">
     <h1>Resultados</h1>
-    <div class="race-info">
+    <div class="race-info" *ngIf="details">
       <span>{{ details.raceName }}</span>
     </div>
   </div>
 
-  <table class="modern-table">
-    <thead>
-      <tr>
-        <th>Pos</th>
-        <th>Piloto</th>
-        <th>Escudería</th>
-        <th>Vueltas</th>
-        <th>Tiempo</th>
-        <th>Estado</th>
-        <th>Puntos</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (result of details.Results; track result) {
-      <tr>
-        <td class="position">{{ result.position }}</td>
-        <td class="driver">
-          <span class="surname">{{ result.Driver.familyName }}</span>
-          <span class="firstname">{{ result.Driver.givenName }}</span>
-        </td>
-        <td class="constructor">{{ result.Constructor.name }}</td>
-        <td>{{ result.laps }}</td>
-        <td>{{ result.Time?.time }}</td>
-        <td>{{ result.status }}</td>
-        <td class="points">{{ result.points }}</td>
-      </tr>
-      }
-    </tbody>
-  </table>
+  @if (scheduleResultsService.loading()) {
+    <div class="state">Cargando resultados...</div>
+  } @else if (scheduleResultsService.error()) {
+    <div class="state error">{{ scheduleResultsService.error() }}</div>
+  } @else if (details) {
+    <table class="modern-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Piloto</th>
+          <th>Escudería</th>
+          <th>Vueltas</th>
+          <th>Tiempo</th>
+          <th>Estado</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (result of details.Results; track result) {
+        <tr>
+          <td class="position" data-label="Pos">
+            {{ result.position }}
+          </td>
+          <td class="driver" data-label="Piloto">
+            <span class="surname">{{ result.Driver.familyName }}</span>
+            <span class="firstname">{{ result.Driver.givenName }}</span>
+          </td>
+          <td class="constructor" data-label="Escudería">
+            {{ result.Constructor.name }}
+          </td>
+          <td data-label="Vueltas">{{ result.laps }}</td>
+          <td data-label="Tiempo">{{ result.Time?.time }}</td>
+          <td data-label="Estado">{{ result.status }}</td>
+          <td class="points" data-label="Puntos">{{ result.points }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <div class="state">No hay resultados disponibles.</div>
+  }
 </div>

@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 import { CurrentService } from './data-access/last-results.service';
+import { MotionRevealDirective } from '../shared/directives/motion-reveal.directive';
+import { CountUpDirective } from '../shared/directives/count-up.directive';
 
 @Component({
   standalone: true,
   selector: 'app-last-results-list',
   templateUrl: './ui/last-results.component.html',
   styleUrls: ['./ui/last-results.component.scss'],
-  imports: [RouterLink, HeaderComponent],
+  imports: [MotionRevealDirective, CountUpDirective],
 })
 export class LastResultsComponent {
   currentService = inject(CurrentService);

@@ -6,30 +6,36 @@
     </div>
   </div>
 
-  <table class="modern-table">
-    <thead>
-      <tr>
-        <th>Escudería</th>
-        <th>Nacionalidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (constructor of constructorsService.constructors(); track
-      constructor.constructorId) {
-      <tr>
-        <td class="team">
-          <a [routerLink]="['/team-details', constructor.constructorId]">
-            {{ constructor.name }}
-          </a>
-        </td>
-        <td class="nationality">
-          <div
-            class="fflag ff-md {{ 'fflag-' + constructor.nationality }}"
-          ></div>
-          <span>{{ constructor.nationality }}</span>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+  @if (constructorsService.loading()) {
+    <div class="state">Cargando escuderías...</div>
+  } @else if (constructorsService.error()) {
+    <div class="state error">{{ constructorsService.error() }}</div>
+  } @else {
+    <table class="modern-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Escudería</th>
+          <th>Nacionalidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (constructor of constructorsService.constructors(); track
+        constructor.constructorId) {
+        <tr>
+          <td class="team" data-label="Escudería">
+            <a [routerLink]="['/team-details', constructor.constructorId]">
+              {{ constructor.name }}
+            </a>
+          </td>
+          <td class="nationality" data-label="Nacionalidad">
+            <div
+              class="fflag ff-md {{ 'fflag-' + (constructor.nationality | flagClass) }}"
+            ></div>
+            <span>{{ constructor.nationality }}</span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>

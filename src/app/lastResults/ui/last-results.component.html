@@ -7,34 +7,46 @@
     </div>
   </div>
 
-  <table class="results-table">
-    <thead>
-      <tr>
-        <th>Pos</th>
-        <th>Piloto</th>
-        <th>Escudería</th>
-        <th>Vueltas</th>
-        <th>Tiempo</th>
-        <th>Estado</th>
-        <th>Puntos</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (race of currentService.Races(); track currentService.Races) { @for
-      (result of race.Results; track result) {
-      <tr>
-        <td class="position">{{ result.position }}</td>
-        <td class="driver">
-          <span class="surname">{{ result.Driver.familyName }}</span>
-          <span class="firstname">{{ result.Driver.givenName }}</span>
-        </td>
-        <td class="constructor">{{ result.Constructor.name }}</td>
-        <td>{{ result.laps }}</td>
-        <td>{{ result.Time?.time }}</td>
-        <td>{{ result.status }}</td>
-        <td class="points">{{ result.points }}</td>
-      </tr>
-      } }
-    </tbody>
-  </table>
+  @if (currentService.loading()) {
+    <div class="state">Cargando resultados...</div>
+  } @else if (currentService.error()) {
+    <div class="state error">{{ currentService.error() }}</div>
+  } @else {
+    <table class="results-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Piloto</th>
+          <th>Escudería</th>
+          <th>Vueltas</th>
+          <th>Tiempo</th>
+          <th>Estado</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (race of currentService.Races(); track currentService.Races) {
+        @for (result of race.Results; track result) {
+        <tr>
+          <td class="position" data-label="Pos" [countUp]="result.position">
+            {{ result.position }}
+          </td>
+          <td class="driver" data-label="Piloto">
+            <span class="surname">{{ result.Driver.familyName }}</span>
+            <span class="firstname">{{ result.Driver.givenName }}</span>
+          </td>
+          <td class="constructor" data-label="Escudería">
+            {{ result.Constructor.name }}
+          </td>
+          <td data-label="Vueltas">{{ result.laps }}</td>
+          <td data-label="Tiempo">{{ result.Time?.time }}</td>
+          <td data-label="Estado">{{ result.status }}</td>
+          <td class="points" data-label="Puntos" [countUp]="result.points">
+            {{ result.points }}
+          </td>
+        </tr>
+        } }
+      </tbody>
+    </table>
+  }
 </div>

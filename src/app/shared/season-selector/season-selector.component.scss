@@ -1,0 +1,41 @@
+.season-bar {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  color: #f1f3f7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.7rem;
+  background: #0f1218;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+.label {
+  opacity: 0.7;
+}
+
+select {
+  background: #141924;
+  color: #f1f3f7;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .season-bar {
+    top: 10px;
+    right: 10px;
+  }
+}

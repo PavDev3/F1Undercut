@@ -6,34 +6,38 @@
     </div>
   </div>
 
-  <table class="modern-table">
-    <thead>
-      <tr>
-        <th>Número</th>
-        <th>Piloto</th>
-        <th>Nacionalidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (driver of driversService.drivers(); track driver.driverId) {
-      <tr>
-        <td class="number">{{ driver.permanentNumber }}</td>
-        <td class="driver">
-          <a [routerLink]="['/driver-details', driver.driverId]">
-            <span class="surname">{{ driver.familyName }}</span>
-            <span class="firstname">{{ driver.givenName }}</span>
-          </a>
-        </td>
-        <td class="nationality">
-          <div
-            class="fflag ff-md {{
-              'fflag-' + driver.nationality.replaceAll(' ', '')
-            }}"
-          ></div>
-          <span>{{ driver.nationality }}</span>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+  @if (driversService.loading()) {
+    <div class="state">Cargando pilotos...</div>
+  } @else if (driversService.error()) {
+    <div class="state error">{{ driversService.error() }}</div>
+  } @else {
+    <table class="modern-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Piloto</th>
+          <th>Nacionalidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (driver of driversService.driversSorted(); track driver.driverId) {
+        <tr>
+          <td class="number" data-label="Número">
+            {{ driver.permanentNumber }}
+          </td>
+          <td class="driver" data-label="Piloto">
+            <a [routerLink]="['/driver-details', driver.driverId]">
+              <span class="surname">{{ driver.familyName }}</span>
+              <span class="firstname">{{ driver.givenName }}</span>
+            </a>
+          </td>
+          <td class="nationality" data-label="Nacionalidad">
+            <div class="fflag ff-md {{ 'fflag-' + (driver.nationality | flagClass) }}"></div>
+            <span>{{ driver.nationality }}</span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>

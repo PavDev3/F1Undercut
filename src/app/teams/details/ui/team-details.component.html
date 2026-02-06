@@ -1,27 +1,98 @@
 <div class="container">
   <div class="header">
     <h1>Detalles del Equipo</h1>
-    <div class="team-name">
-      {{ team.name }}
-    </div>
+    @if (team()) {
+      <div class="team-name">{{ team()?.name }}</div>
+    }
   </div>
 
-  <div class="team-card">
-    <div class="info-grid">
-      <div class="info-item">
-        <span class="label">Nacionalidad</span>
-        <div class="value nationality">
-          <div class="fflag ff-md {{ 'fflag-' + team.nationality }}"></div>
-          <span>{{ team.nationality }}</span>
+  @if (constructorsService.loading()) {
+    <div class="state">Cargando escudería...</div>
+  } @else if (constructorsService.error()) {
+    <div class="state error">{{ constructorsService.error() }}</div>
+  } @else if (team()) {
+    <div class="team-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Nacionalidad</span>
+          <div class="value nationality">
+            <div class="fflag ff-md {{ 'fflag-' + (team()?.nationality | flagClass) }}"></div>
+            <span>{{ team()?.nationality }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Wikipedia</span>
+          <a class="value link" [href]="team()?.url" target="_blank">
+            Ver historia del equipo
+          </a>
         </div>
       </div>
-
-      <div class="info-item">
-        <span class="label">Wikipedia</span>
-        <a class="value link" [href]="team.url" target="_blank">
-          Ver historia del equipo
-        </a>
-      </div>
     </div>
-  </div>
+    <div class="wiki-card">
+      <h2>Sobre</h2>
+      @if (wikiLoading()) {
+        <div class="state">Cargando información adicional...</div>
+      } @else if (wikiError()) {
+        <div class="state">{{ wikiError() }}</div>
+      } @else if (wiki()) {
+        <div class="wiki-content">
+          @if (wiki()?.thumbnail?.source) {
+            <img
+              class="wiki-image"
+              [src]="wiki()?.thumbnail?.source"
+              [alt]="wiki()?.title || 'Imagen'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ wiki()?.title }}</div>
+            <div class="wiki-description">{{ wiki()?.description }}</div>
+            <p class="wiki-extract">{{ wiki()?.extract }}</p>
+            @if (wiki()?.content_urls?.desktop?.page) {
+              <a
+                class="wiki-link"
+                [href]="wiki()?.content_urls?.desktop?.page"
+                target="_blank"
+              >
+                Ver en Wikipedia
+              </a>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin información adicional.</div>
+      }
+    </div>
+    <div class="wiki-card">
+      <h2>Datos OpenF1</h2>
+      @if (openF1Loading()) {
+        <div class="state">Cargando datos deportivos...</div>
+      } @else if (openF1Error()) {
+        <div class="state">{{ openF1Error() }}</div>
+      } @else if (openF1()) {
+        <div class="wiki-content">
+          @if (openF1()?.headshot_url) {
+            <img
+              class="wiki-image"
+              [src]="openF1()?.headshot_url"
+              [alt]="openF1()?.team_name || 'Equipo'"
+              loading="lazy"
+            />
+          }
+          <div class="wiki-text">
+            <div class="wiki-title">{{ openF1()?.team_name }}</div>
+            <div class="wiki-description">Datos deportivos actuales</div>
+            <p class="wiki-extract">
+              Color equipo: {{ openF1()?.team_colour }}
+            </p>
+          </div>
+        </div>
+      } @else {
+        <div class="state">Sin datos deportivos adicionales.</div>
+      }
+    </div>
+  } @else {
+    <div class="state">No se encontró la escudería.</div>
+  }
 </div>

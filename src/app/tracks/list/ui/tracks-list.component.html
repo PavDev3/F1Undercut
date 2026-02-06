@@ -6,31 +6,37 @@
     </div>
   </div>
 
-  <table class="modern-table">
-    <thead>
-      <tr>
-        <th>Circuito</th>
-        <th>País</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (track of tracksService.tracks(); track track.circuitId) {
-      <tr>
-        <td class="track">
-          <a [routerLink]="['/track-details', track.circuitId]">
-            {{ track.circuitName }}
-          </a>
-        </td>
-        <td class="nationality">
-          <div
-            class="fflag ff-md {{
-              'fflag-' + track.Location.country.replaceAll(' ', '')
-            }}"
-          ></div>
-          <span>{{ track.Location.country }}</span>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+  @if (tracksService.loading()) {
+    <div class="state">Cargando circuitos...</div>
+  } @else if (tracksService.error()) {
+    <div class="state error">{{ tracksService.error() }}</div>
+  } @else {
+    <table class="modern-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Circuito</th>
+          <th>País</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (track of tracksService.tracks(); track track.circuitId) {
+        <tr>
+          <td class="track" data-label="Circuito">
+            <a [routerLink]="['/track-details', track.circuitId]">
+              {{ track.circuitName }}
+            </a>
+          </td>
+          <td class="nationality" data-label="País">
+            <div
+              class="fflag ff-md {{
+                'fflag-' + (track.Location.country | flagClass)
+              }}"
+            ></div>
+            <span>{{ track.Location.country }}</span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>

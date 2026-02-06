@@ -12,6 +12,7 @@ export const routes: Routes = [
       import('./drivers/list/drivers-list.component').then(
         (m) => m.DriversListComponent
       ),
+    data: { animation: 'drivers' },
   },
   {
     path: 'standings',
@@ -19,6 +20,7 @@ export const routes: Routes = [
       import('./standings/standings-list.component').then(
         (m) => m.StandingsListComponent
       ),
+    data: { animation: 'standings' },
   },
   {
     path: 'schedule',
@@ -26,6 +28,7 @@ export const routes: Routes = [
       import('./schedule/list/schedule-list.component').then(
         (m) => m.ScheduleListComponent
       ),
+    data: { animation: 'schedule' },
   },
   {
     path: 'teams',
@@ -33,6 +36,7 @@ export const routes: Routes = [
       import('./teams/list/teams-list.component').then(
         (m) => m.TeamsListComponent
       ),
+    data: { animation: 'teams' },
   },
   {
     path: 'last-results',
@@ -40,6 +44,7 @@ export const routes: Routes = [
       import('./lastResults/last-results.component').then(
         (m) => m.LastResultsComponent
       ),
+    data: { animation: 'results' },
   },
   {
     path: 'tracks',
@@ -47,6 +52,7 @@ export const routes: Routes = [
       import('./tracks/list/tracks-list.component').then(
         (m) => m.TrackListComponent
       ),
+    data: { animation: 'tracks' },
   },
   {
     path: 'driver-details/:id',
@@ -54,6 +60,7 @@ export const routes: Routes = [
       import('./drivers/details/driver-details.component').then(
         (m) => m.DriverDetailsComponent
       ),
+    data: { animation: 'driver-details' },
   },
   {
     path: 'track-details/:id',
@@ -61,6 +68,7 @@ export const routes: Routes = [
       import('./tracks/details/track-details.component').then(
         (m) => m.TrackDetailsComponent
       ),
+    data: { animation: 'track-details' },
   },
   {
     path: 'team-details/:id',
@@ -68,6 +76,7 @@ export const routes: Routes = [
       import('./teams/details/team-details.component').then(
         (m) => m.TeamDetailsComponent
       ),
+    data: { animation: 'team-details' },
   },
   {
     path: 'results/:id',
@@ -75,5 +84,6 @@ export const routes: Routes = [
       import('./schedule/details/schedule-details.component').then(
         (m) => m.ScheduleDetailsComponent
       ),
+    data: { animation: 'schedule-details' },
   },
 ];

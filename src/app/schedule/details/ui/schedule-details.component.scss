@@ -1,6 +1,11 @@
 @import "../../../shared/styles/shared-styles.scss";
 
-// Estilos específicos para móviles
+.header .race-info {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 @media (max-width: 767px) {
   .modern-table {
     thead tr th,

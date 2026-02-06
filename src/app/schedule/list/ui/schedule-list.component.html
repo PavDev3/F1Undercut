@@ -6,28 +6,38 @@
     </div>
   </div>
 
-  <table class="modern-table">
-    <thead>
-      <tr>
-        <th>Carrera</th>
-        <th>Fecha</th>
-        <th>Práctica 1</th>
-        <th>Clasificación</th>
-        <th>Hora Carrera</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (races of scheduleService.races(); track races.raceName) {
-      <tr>
-        <td class="race-name">
-          <a [routerLink]="['/results', races.round]">{{ races.raceName }}</a>
-        </td>
-        <td>{{ races.date | dateFormat }}</td>
-        <td>{{ races.FirstPractice?.time | timeFormat }}</td>
-        <td>{{ races.Qualifying?.time | timeFormat }}</td>
-        <td>{{ races.time | timeFormat }}</td>
-      </tr>
-      }
-    </tbody>
-  </table>
+  @if (scheduleService.loading()) {
+    <div class="state">Cargando calendario...</div>
+  } @else if (scheduleService.error()) {
+    <div class="state error">{{ scheduleService.error() }}</div>
+  } @else {
+    <table class="modern-table" motionReveal>
+      <thead>
+        <tr>
+          <th>Carrera</th>
+          <th>Fecha</th>
+          <th>Práctica 1</th>
+          <th>Clasificación</th>
+          <th>Hora Carrera</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (races of scheduleService.races(); track races.raceName) {
+        <tr>
+          <td class="race-name" data-label="Carrera">
+            <a [routerLink]="['/results', races.round]">{{ races.raceName }}</a>
+          </td>
+          <td data-label="Fecha">{{ races.date | dateFormat }}</td>
+          <td data-label="Práctica 1">
+            {{ races.FirstPractice?.time | timeFormat }}
+          </td>
+          <td data-label="Clasificación">
+            {{ races.Qualifying?.time | timeFormat }}
+          </td>
+          <td data-label="Hora Carrera">{{ races.time | timeFormat }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>
