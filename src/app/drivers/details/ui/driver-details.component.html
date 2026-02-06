@@ -1,6 +1,9 @@
 <div class="container">
   <div class="header">
     <h1>Detalles del Piloto</h1>
+    <button class="back-button" type="button" (click)="goBack()">
+      ← Volver
+    </button>
     @if (driver()) {
       <div class="driver-name">
         {{ driver()?.givenName }} {{ driver()?.familyName }}
@@ -19,7 +22,7 @@
           <span class="label">Nacionalidad</span>
           <div class="value nationality">
             <div class="fflag ff-md {{ 'fflag-' + (driver()?.nationality | flagClass) }}"></div>
-            <span>{{ driver()?.nationality }}</span>
+            <span>{{ driver()?.nationality | nationalityEs }}</span>
           </div>
         </div>
 
@@ -48,7 +51,7 @@
       @if (wikiLoading()) {
         <div class="state">Cargando información adicional...</div>
       } @else if (wikiError()) {
-        <div class="state">{{ wikiError() }}</div>
+        <div class="state">Próximamente</div>
       } @else if (wiki()) {
         <div class="wiki-content">
           @if (wiki()?.thumbnail?.source) {
@@ -75,7 +78,7 @@
           </div>
         </div>
       } @else {
-        <div class="state">Sin información adicional.</div>
+        <div class="state">Próximamente</div>
       }
     </div>
     <div class="wiki-card">
@@ -83,7 +86,7 @@
       @if (openF1Loading()) {
         <div class="state">Cargando datos deportivos...</div>
       } @else if (openF1Error()) {
-        <div class="state">{{ openF1Error() }}</div>
+        <div class="state">Próximamente</div>
       } @else if (openF1()) {
         <div class="wiki-content">
           @if (openF1()?.headshot_url) {
@@ -103,7 +106,7 @@
           </div>
         </div>
       } @else {
-        <div class="state">Sin datos deportivos adicionales.</div>
+        <div class="state">Próximamente</div>
       }
     </div>
   } @else {

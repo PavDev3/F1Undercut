@@ -40,7 +40,7 @@
           </td>
           <td data-label="Vueltas">{{ result.laps }}</td>
           <td data-label="Tiempo">{{ result.Time?.time }}</td>
-          <td data-label="Estado">{{ result.status }}</td>
+          <td data-label="Estado">{{ result.status | statusEs }}</td>
           <td class="points" data-label="Puntos" [countUp]="result.points">
             {{ result.points }}
           </td>

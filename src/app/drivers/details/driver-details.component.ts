@@ -3,11 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { DateFormatPipe } from '../../shared/date-format.pipe';
+import { Location } from '@angular/common';
 import { DriversService } from '../list/data-access/drivers.service';
 import { Driver, DriversResponse } from '../list/interfaces/drivers.interface';
 import { WikiSummaryService } from '../../shared/data-access/wiki-summary.service';
 import { WikiSummary } from '../../shared/interfaces/wiki-summary.interface';
 import { FlagClassPipe } from '../../shared/pipes/flag-class.pipe';
+import { NationalityEsPipe } from '../../shared/pipes/nationality-es.pipe';
 import { OpenF1Service } from '../../shared/data-access/openf1.service';
 import { OpenF1Driver } from '../../shared/interfaces/openf1.interface';
 import { SeasonStoreService } from '../../shared/data-access/season-store.service';
@@ -17,7 +19,7 @@ import { SeasonStoreService } from '../../shared/data-access/season-store.servic
   selector: 'driver-details',
   templateUrl: './ui/driver-details.component.html',
   styleUrls: ['./ui/driver-details.component.scss'],
-  imports: [DateFormatPipe, FlagClassPipe],
+  imports: [DateFormatPipe, FlagClassPipe, NationalityEsPipe],
 })
 export class DriverDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -27,6 +29,7 @@ export class DriverDetailsComponent implements OnInit {
   driversService = inject(DriversService);
   private wikiService = inject(WikiSummaryService);
   private openF1Service = inject(OpenF1Service);
+  private location = inject(Location);
 
   driverId = signal<string>('');
   driver = signal<Driver | null>(null);
@@ -124,5 +127,9 @@ export class DriverDetailsComponent implements OnInit {
           this.openF1Error.set('No se pudo cargar datos deportivos.');
         },
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

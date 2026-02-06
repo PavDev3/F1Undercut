@@ -16,6 +16,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           (click)="toggleMenu()"
           [attr.aria-expanded]="isMenuOpen"
           aria-label="Alternar menú de navegación"
+          [class.open]="isMenuOpen"
         >
           <span></span>
           <span></span>

@@ -1,5 +1,6 @@
 import { Component, DestroyRef, Injector, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ConstructorsService } from '../list/data-access/teams.service';
@@ -7,6 +8,7 @@ import { Constructors, ConstructorsResponse } from '../list/interfaces/teams.int
 import { WikiSummaryService } from '../../shared/data-access/wiki-summary.service';
 import { WikiSummary } from '../../shared/interfaces/wiki-summary.interface';
 import { FlagClassPipe } from '../../shared/pipes/flag-class.pipe';
+import { NationalityEsPipe } from '../../shared/pipes/nationality-es.pipe';
 import { OpenF1Service } from '../../shared/data-access/openf1.service';
 import { OpenF1Driver } from '../../shared/interfaces/openf1.interface';
 import { SeasonStoreService } from '../../shared/data-access/season-store.service';
@@ -16,13 +18,14 @@ import { SeasonStoreService } from '../../shared/data-access/season-store.servic
   selector: 'team-details',
   templateUrl: './ui/team-details.component.html',
   styleUrls: ['./ui/team-details.component.scss'],
-  imports: [FlagClassPipe],
+  imports: [FlagClassPipe, NationalityEsPipe],
 })
 export class TeamDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private seasonStore = inject(SeasonStoreService);
   private destroyRef = inject(DestroyRef);
   private injector = inject(Injector);
+  private location = inject(Location);
   constructorsService = inject(ConstructorsService);
   private wikiService = inject(WikiSummaryService);
   private openF1Service = inject(OpenF1Service);
@@ -122,5 +125,9 @@ export class TeamDetailsComponent implements OnInit {
           this.openF1Error.set('No se pudo cargar datos deportivos.');
         },
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

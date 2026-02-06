@@ -1,6 +1,9 @@
 <div class="container">
   <div class="header">
     <h1>Resultados</h1>
+    <button class="back-button" type="button" (click)="goBack()">
+      ← Volver
+    </button>
     <div class="race-info" *ngIf="details">
       <span>{{ details.raceName }}</span>
     </div>
@@ -38,7 +41,7 @@
           </td>
           <td data-label="Vueltas">{{ result.laps }}</td>
           <td data-label="Tiempo">{{ result.Time?.time }}</td>
-          <td data-label="Estado">{{ result.status }}</td>
+          <td data-label="Estado">{{ result.status | statusEs }}</td>
           <td class="points" data-label="Puntos">{{ result.points }}</td>
         </tr>
         }

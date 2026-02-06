@@ -1,5 +1,6 @@
 import { Component, DestroyRef, Injector, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { TracksService } from '../list/data-access/tracks.service';
@@ -7,6 +8,7 @@ import { Tracks, TracksResponse } from '../list/interfaces/tracks.interface';
 import { WikiSummaryService } from '../../shared/data-access/wiki-summary.service';
 import { WikiSummary } from '../../shared/interfaces/wiki-summary.interface';
 import { FlagClassPipe } from '../../shared/pipes/flag-class.pipe';
+import { NationalityEsPipe } from '../../shared/pipes/nationality-es.pipe';
 import { OpenF1Service } from '../../shared/data-access/openf1.service';
 import { OpenF1Meeting } from '../../shared/interfaces/openf1.interface';
 import { SeasonStoreService } from '../../shared/data-access/season-store.service';
@@ -16,13 +18,14 @@ import { SeasonStoreService } from '../../shared/data-access/season-store.servic
   selector: 'track-details',
   templateUrl: './ui/track-details.component.html',
   styleUrls: ['./ui/track-details.component.scss'],
-  imports: [FlagClassPipe],
+  imports: [FlagClassPipe, NationalityEsPipe],
 })
 export class TrackDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private seasonStore = inject(SeasonStoreService);
   private destroyRef = inject(DestroyRef);
   private injector = inject(Injector);
+  private location = inject(Location);
   tracksService = inject(TracksService);
   private wikiService = inject(WikiSummaryService);
   private openF1Service = inject(OpenF1Service);
@@ -130,5 +133,9 @@ export class TrackDetailsComponent implements OnInit {
           this.openF1Error.set('No se pudo cargar datos deportivos.');
         },
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
