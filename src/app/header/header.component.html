@@ -31,14 +31,32 @@
        routerLink="/tracks"
        routerLinkActive="is-active"
        (click)="closeMenu()">Circuitos</a>
+
+    <!-- Season select (mobile — inside collapsed nav) -->
+    @if (seasonStore.seasons().length > 0) {
+      <div class="season-select-mobile">
+        <span class="season-label">Temporada</span>
+        <select
+          [value]="seasonStore.selectedSeason()"
+          (change)="onSeasonChange($event)">
+          <option *ngFor="let s of seasonStore.seasons()" [value]="s.season">{{ s.season }}</option>
+        </select>
+      </div>
+    }
   </nav>
 
-  <!-- Season badge (desktop) -->
-  @if (season) {
-    <div class="season-badge">
-      <span>{{ season }}</span>
-      <span class="sep">│</span>
-      <span class="round">R{{ round }}</span>
+  <!-- Season select (desktop — right side) -->
+  @if (seasonStore.seasons().length > 0) {
+    <div class="season-select-wrap">
+      <select
+        class="season-select"
+        [value]="seasonStore.selectedSeason()"
+        (change)="onSeasonChange($event)">
+        <option *ngFor="let s of seasonStore.seasons()" [value]="s.season">{{ s.season }}</option>
+      </select>
+      @if (round) {
+        <span class="round-badge">R{{ round }}</span>
+      }
     </div>
   }
 

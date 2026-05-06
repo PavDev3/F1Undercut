@@ -10,14 +10,12 @@ import {
   trigger,
 } from '@angular/animations';
 import { HeaderComponent } from './header/header.component';
-import { SeasonSelectorComponent } from './shared/season-selector/season-selector.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
     <app-header></app-header>
-    <app-season-selector></app-season-selector>
     <main [@routeAnimations]="getRouteAnimation(outlet)">
       <router-outlet #outlet="outlet"></router-outlet>
     </main>
@@ -49,7 +47,7 @@ import { SeasonSelectorComponent } from './shared/season-selector/season-selecto
       ]),
     ]),
   ],
-  imports: [CommonModule, RouterOutlet, HeaderComponent, SeasonSelectorComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent],
 })
 export class AppComponent {
   getRouteAnimation(outlet: RouterOutlet) {

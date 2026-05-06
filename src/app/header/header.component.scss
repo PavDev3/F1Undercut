@@ -46,9 +46,7 @@
   letter-spacing: 0.5px;
   line-height: 1;
 
-  strong {
-    color: var(--red);
-  }
+  strong { color: var(--red); }
 }
 
 /* ── Nav links ── */
@@ -75,9 +73,7 @@
   transition: color 0.2s;
   white-space: nowrap;
 
-  &:hover {
-    color: var(--text);
-  }
+  &:hover { color: var(--text); }
 
   &.is-active {
     color: var(--text);
@@ -95,26 +91,92 @@
   }
 }
 
-/* ── Season / round badge ── */
-.season-badge {
+/* ── Season select (desktop) ── */
+.season-select-wrap {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.season-select {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 24px 5px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, color 0.2s;
+
+  /* Custom chevron */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23E10600'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+
+  &:hover { border-color: var(--red); }
+
+  option {
+    background: var(--bg-3);
+    color: var(--text);
+    font-weight: 400;
+  }
+}
+
+.round-badge {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 1.5px;
-  color: var(--text-dim);
+  color: var(--text-muted);
   text-transform: uppercase;
-  margin-left: auto;
-  flex-shrink: 0;
+}
 
-  .sep {
-    color: var(--border-2);
+/* ── Season select (mobile — inside nav) ── */
+.season-select-mobile {
+  display: none;
+  width: 100%;
+  height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+
+  .season-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
   }
 
-  .round {
+  select {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--border-2);
     color: var(--red);
+    font-family: var(--font-mono);
+    font-size: 11px;
     font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 22px 4px 8px;
+    cursor: pointer;
+    outline: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23E10600'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+
+    option {
+      background: var(--bg-3);
+      color: var(--text);
+    }
   }
 }
 
@@ -132,7 +194,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 0;
-  margin-left: auto;
+  margin-left: 12px;
 
   span {
     display: block;
@@ -156,6 +218,8 @@
 
   .menu-toggle { display: inline-flex; }
 
+  .season-select-wrap { display: none; }
+
   .nav {
     flex-basis: 100%;
     flex-direction: column;
@@ -165,7 +229,11 @@
     overflow: hidden;
     transition: max-height 0.3s ease;
 
-    &.open { max-height: 400px; }
+    &.open {
+      max-height: 500px;
+
+      .season-select-mobile { display: flex; }
+    }
   }
 
   .nav-link {
@@ -173,6 +241,4 @@
     height: 44px;
     border-bottom: 1px solid var(--border);
   }
-
-  .season-badge { display: none; }
 }
