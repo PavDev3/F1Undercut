@@ -1,163 +1,267 @@
-@import "../../../shared/styles/shared-styles.scss";
+@import '../../../shared/styles/shared-styles.scss';
 
-.driver-name {
-  font-size: 1.4rem;
-  color: var(--color-text-muted);
-  margin-top: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+.driver-detail-page { background: var(--bg); min-height: 100vh; }
 
-.driver-card {
-  background: var(--color-surface);
-  border-radius: var(--radius-2);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-1);
-  padding: 28px;
-  margin-top: 20px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* ── Hero ── */
+.driver-hero {
+  position: relative;
+  padding: 40px 32px 28px;
+  border-bottom: 1px solid var(--border-2);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-color, var(--red)) 14%, transparent) 0%,
+    transparent 60%
+  );
+  overflow: hidden;
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-2);
+  .hero-number {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    font-family: var(--font-display);
+    font-size: 360px;
+    line-height: 0.8;
+    color: rgba(255,255,255,0.04);
+    font-weight: 700;
+    letter-spacing: -16px;
+    pointer-events: none;
+    user-select: none;
   }
-}
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 22px;
-}
+  .hero-inner { position: relative; z-index: 2; }
 
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  .label {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
+  .back-btn {
+    background: transparent;
+    border: 1px solid var(--border-2);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover { color: var(--text); border-color: var(--text-dim); }
   }
 
-  .value {
-    font-size: 1.05rem;
-    color: var(--color-text);
+  .hero-team-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--team-color, var(--text-dim));
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h1.hero-code {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+
+  .hero-full-name {
+    font-family: var(--font-display);
+    font-size: 32px;
     font-weight: 600;
-
-    &.nationality {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .fflag {
-        margin-right: 6px;
-      }
-    }
-
-    &.number {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--color-accent);
-    }
-
-    &.link {
-      color: #9cc2ff;
-      text-decoration: none;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: var(--color-accent-2);
-      }
-    }
-  }
-}
-
-.wiki-card {
-  margin-top: 20px;
-  background: var(--color-surface);
-  border-radius: var(--radius-2);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-1);
-  padding: 24px;
-
-  h2 {
-    margin: 0 0 14px;
+    color: var(--text-dim);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+
+    .sep { color: var(--border-2); }
+
+    .fflag { flex-shrink: 0; }
   }
 }
 
-.wiki-content {
+/* ── Stats strip ── */
+.stats-strip {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 18px;
-  align-items: start;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border-2);
+
+  .stat-cell {
+    background: var(--bg);
+    padding: 20px 24px;
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+
+      &.accent { color: var(--red); }
+    }
+
+    .stat-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+
+      &:hover { text-decoration: underline; }
+    }
+  }
 }
 
-.wiki-image {
-  width: 100%;
-  border-radius: 12px;
+/* ── Content grid ── */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  padding: 32px;
+}
+
+.bio-card,
+.openf1-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  padding: 28px;
+
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--red);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+}
+
+/* Wiki layout */
+.wiki-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.wiki-img {
+  width: 160px;
+  height: 200px;
   object-fit: cover;
-  box-shadow: var(--shadow-1);
+  object-position: top;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
 }
 
-.wiki-title {
-  font-weight: 700;
-  font-size: 1.05rem;
+.wiki-text {
+  flex: 1;
+  min-width: 0;
+
+  .wiki-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+
+  .wiki-desc {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0 0 12px;
+  }
+
+  .wiki-extract {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .wiki-link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    &:hover { text-decoration: underline; }
+  }
 }
 
-.wiki-description {
-  color: var(--color-text-muted);
+/* OpenF1 card */
+.of1-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+
+  &:last-child { border-bottom: none; }
+
+  .of1-key { color: var(--text-muted); letter-spacing: 1px; }
+  .of1-val { color: var(--text); font-weight: 600; }
+}
+
+.page-footer {
+  padding: 20px 32px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.75rem;
-  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
-.wiki-extract {
-  margin: 0 0 12px;
-  color: var(--color-text);
+@media (max-width: 1024px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .stats-strip  { grid-template-columns: repeat(3, 1fr); }
 }
 
-.wiki-link {
-  color: #9cc2ff;
-  text-decoration: none;
-  transition: color 0.2s ease;
+@media (max-width: 768px) {
+  .driver-hero {
+    padding: 24px 20px;
 
-  &:hover {
-    color: var(--color-accent-2);
-  }
-}
-
-.back-button {
-  margin-left: auto;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-@media (max-width: 767px) {
-  .back-button {
-    align-self: flex-start;
-  }
-  .driver-card {
-    padding: 20px;
+    .hero-number { font-size: 200px; }
   }
 
-  .info-grid {
-    gap: 18px;
-  }
-
-  .wiki-content {
-    grid-template-columns: 1fr;
-  }
+  .wiki-layout  { flex-direction: column; }
+  .wiki-img     { width: 100%; height: 220px; }
+  .stats-strip  { grid-template-columns: 1fr 1fr; }
+  .content-grid { padding: 16px; gap: 16px; }
 }

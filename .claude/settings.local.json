@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//mnt/c/Users/Levi/.claude/projects/D--Angular-f1/**)",
+      "Bash(tar xf *)"
+    ]
+  }
+}

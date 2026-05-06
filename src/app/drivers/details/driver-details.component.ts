@@ -13,6 +13,7 @@ import { NationalityEsPipe } from '../../shared/pipes/nationality-es.pipe';
 import { OpenF1Service } from '../../shared/data-access/openf1.service';
 import { OpenF1Driver } from '../../shared/interfaces/openf1.interface';
 import { SeasonStoreService } from '../../shared/data-access/season-store.service';
+import { CONSTRUCTOR_COLORS } from '../../lastResults/last-results.component';
 
 @Component({
   standalone: true,
@@ -92,9 +93,7 @@ export class DriverDetailsComponent implements OnInit {
       next: (summary: WikiSummary | null) => {
         this.wiki.set(summary);
         this.wikiLoading.set(false);
-        if (!summary) {
-          this.wikiError.set('Sin información adicional.');
-        }
+        if (!summary) this.wikiError.set('Sin información adicional.');
       },
       error: () => {
         this.wikiLoading.set(false);
@@ -118,9 +117,7 @@ export class DriverDetailsComponent implements OnInit {
           );
           this.openF1.set(match ?? null);
           this.openF1Loading.set(false);
-          if (!match) {
-            this.openF1Error.set('Sin datos deportivos adicionales.');
-          }
+          if (!match) this.openF1Error.set('Sin datos deportivos adicionales.');
         },
         error: () => {
           this.openF1Loading.set(false);
@@ -131,5 +128,21 @@ export class DriverDetailsComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  constructorColor(): string {
+    const teamName = this.openF1()?.team_name?.toLowerCase() ?? '';
+    const idMap: Record<string, string> = {
+      'red bull': 'red_bull', 'ferrari': 'ferrari', 'mercedes': 'mercedes',
+      'mclaren': 'mclaren', 'aston martin': 'aston_martin', 'alpine': 'alpine',
+      'williams': 'williams', 'rb': 'rb', 'kick sauber': 'sauber',
+      'sauber': 'sauber', 'haas': 'haas',
+    };
+    const key = Object.keys(idMap).find(k => teamName.includes(k));
+    return key ? (CONSTRUCTOR_COLORS[idMap[key]] ?? 'var(--border-2)') : 'var(--border-2)';
+  }
+
+  teamName(): string {
+    return this.openF1()?.team_name ?? '';
   }
 }

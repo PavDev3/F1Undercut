@@ -1,3 +1,144 @@
 @import "../../../shared/styles/shared-styles.scss";
 
-// Estilos específicos adicionales si son necesarios
+.drivers-page { background: var(--bg); min-height: 100vh; }
+
+.page-hero {
+  padding: 40px 32px 20px;
+  border-bottom: 1px solid var(--border-2);
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 7vw, 88px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin: 0 0 12px;
+  }
+
+  .hero-meta {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+}
+
+.drivers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 32px;
+}
+
+.driver-card {
+  display: block;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--team-color, var(--border-2));
+  padding: 18px;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .card-number {
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    letter-spacing: -4px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .card-team-code {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--team-color, var(--text-muted));
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .card-code {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 6px;
+    text-transform: uppercase;
+    position: relative;
+    line-height: 1;
+  }
+
+  .card-given {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+    position: relative;
+  }
+
+  .card-family {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .card-nat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 12px;
+    position: relative;
+    letter-spacing: 0.5px;
+  }
+}
+
+.page-footer {
+  padding: 20px 32px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+@media (max-width: 1100px) {
+  .drivers-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .drivers-grid { grid-template-columns: repeat(2, 1fr); padding: 16px; gap: 10px; }
+  .page-hero { padding: 24px 20px 16px; }
+}
+@media (max-width: 480px) {
+  .drivers-grid { grid-template-columns: 1fr 1fr; }
+}

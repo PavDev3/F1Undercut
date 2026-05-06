@@ -1,9 +1,8 @@
-<div class="container">
-  <div class="header">
-    <h1>Pilotos</h1>
-    <div class="season-info">
-      <span>Temporada {{ driversService.season() }}</span>
-    </div>
+<div class="drivers-page">
+  <div class="page-hero">
+    <div class="hero-label">// PARRILLA {{ driversService.season() }}</div>
+    <h1>Drivers</h1>
+    <div class="hero-meta">{{ driversService.driversSorted().length }} pilotos</div>
   </div>
 
   @if (driversService.loading()) {
@@ -11,33 +10,27 @@
   } @else if (driversService.error()) {
     <div class="state error">{{ driversService.error() }}</div>
   } @else {
-    <table class="modern-table" motionReveal>
-      <thead>
-        <tr>
-          <th>Número</th>
-          <th>Piloto</th>
-          <th>Nacionalidad</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (driver of driversService.driversSorted(); track driver.driverId) {
-        <tr>
-          <td class="number" data-label="Número">
-            {{ driver.permanentNumber }}
-          </td>
-          <td class="driver" data-label="Piloto">
-            <a [routerLink]="['/driver-details', driver.driverId]">
-              <span class="surname">{{ driver.familyName }}</span>
-              <span class="firstname">{{ driver.givenName }}</span>
-            </a>
-          </td>
-          <td class="nationality" data-label="Nacionalidad">
+    <div class="drivers-grid" motionReveal motionRevealChildren=".driver-card">
+      @for (driver of driversService.driversSorted(); track driver.driverId) {
+        <a class="driver-card"
+           [routerLink]="['/driver-details', driver.driverId]"
+           [style.--team-color]="constructorColorByDriver(driver.driverId)">
+          <div class="card-number" aria-hidden="true">{{ driver.permanentNumber }}</div>
+          <div class="card-team-code">{{ teamShortByDriver(driver.driverId) }}</div>
+          <div class="card-code">{{ driver.code }}</div>
+          <div class="card-given">{{ driver.givenName }}</div>
+          <div class="card-family">{{ driver.familyName }}</div>
+          <div class="card-nat">
             <div class="fflag ff-md {{ 'fflag-' + (driver.nationality | flagClass) }}"></div>
-            <span>{{ driver.nationality | nationalityEs }}</span>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+            {{ driver.nationality | nationalityEs }}
+          </div>
+        </a>
+      }
+    </div>
   }
+
+  <footer class="page-footer">
+    <span>F1 UNDERCUT · PILOTOS {{ driversService.season() }}</span>
+    <span>F1.PABLONUNEZ.DEV</span>
+  </footer>
 </div>

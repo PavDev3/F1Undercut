@@ -1,52 +1,251 @@
-<div class="container">
-  <div class="header">
-    <h1>Últimos Resultados</h1>
-    <div class="race-info">
-      <span>Temporada {{ currentService.season() }}</span>
-      <span>Ronda {{ currentService.round() }}</span>
-    </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="speed-lines" aria-hidden="true">
+    @for (i of speedLineItems; track i) {
+      <div class="line"
+           [style.top]="((i * 7 + 3) % 100) + '%'"
+           [style.left]="'-20%'"
+           [style.width]="(20 + (i % 5) * 12) + '%'"
+           [style.animation-duration]="(4 + (i % 5) * 1.5) + 's'"
+           [style.animation-delay]="(-i * 0.4) + 's'">
+      </div>
+    }
   </div>
 
-  @if (currentService.loading()) {
-    <div class="state">Cargando resultados...</div>
-  } @else if (currentService.error()) {
-    <div class="state error">{{ currentService.error() }}</div>
-  } @else {
-    <table class="results-table" motionReveal>
-      <thead>
-        <tr>
-          <th>Pos</th>
-          <th>Piloto</th>
-          <th>Escudería</th>
-          <th>Vueltas</th>
-          <th>Tiempo</th>
-          <th>Estado</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (race of currentService.Races(); track currentService.Races) {
-        @for (result of race.Results; track result) {
-        <tr>
-          <td class="position" data-label="Pos" [countUp]="result.position">
-            {{ result.position }}
-          </td>
-          <td class="driver" data-label="Piloto">
-            <span class="surname">{{ result.Driver.familyName }}</span>
-            <span class="firstname">{{ result.Driver.givenName }}</span>
-          </td>
-          <td class="constructor" data-label="Escudería">
-            {{ result.Constructor.name }}
-          </td>
-          <td data-label="Vueltas">{{ result.laps }}</td>
-          <td data-label="Tiempo">{{ result.Time?.time }}</td>
-          <td data-label="Estado">{{ result.status | statusEs }}</td>
-          <td class="points" data-label="Puntos" [countUp]="result.points">
-            {{ result.points }}
-          </td>
-        </tr>
-        } }
-      </tbody>
-    </table>
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span class="status-live">
+      <span class="dot"></span>
+      FINALIZADA
+    </span>
+    <span>RONDA {{ currentService.round() | number:'2.0-0' }}</span>
+    @if (raceName()) {
+      <span>{{ raceName() }}</span>
+    }
+    <span class="spacer"></span>
+    <span class="status-green">● COMPLETADA</span>
+  </div>
+
+  <!-- Hero body -->
+  <div class="hero-body">
+    <div class="race-title-block">
+      <div class="label">// CLASIFICACIÓN OFICIAL · CARRERA</div>
+      <h1>{{ circuitShort() }}</h1>
+      <div class="meta">
+        <span>{{ circuitName() }}</span>
+        <span class="sep">│</span>
+        <span>{{ raceDate() }}</span>
+        <span class="sep">│</span>
+        <span>{{ totalLaps() }} VUELTAS</span>
+      </div>
+    </div>
+
+    <div class="hero-divider" aria-hidden="true"></div>
+
+    <div class="hero-stats">
+      <div class="stat-block">
+        <div class="stat-label">POLE</div>
+        <div class="stat-value">{{ pole()?.Driver?.code }}</div>
+        <div class="stat-sub">—</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-label">V. RÁPIDA</div>
+        <div class="stat-value purple">{{ fastestLap()?.Driver?.code }}</div>
+        <div class="stat-sub">{{ fastestLap()?.FastestLap?.Time?.time ?? '—' }}</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-label">GANADOR</div>
+        <div class="stat-value accent">{{ winner()?.Driver?.code }}</div>
+        <div class="stat-sub">{{ winner()?.Constructor?.name }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOADING / ERROR ═══ -->
+@if (currentService.loading()) {
+  <div class="state">Cargando resultados...</div>
+}
+@else if (currentService.error()) {
+  <div class="state error">{{ currentService.error() }}</div>
+}
+@else {
+  <!-- ═══ PODIUM ═══ -->
+  @if (podium().length === 3) {
+    <section class="podium">
+      <div class="podium-inner">
+        @for (slot of podiumOrder; track slot.idx) {
+          <div class="podium-slot" [class.winner]="slot.idx === 0">
+            <div class="podium-card"
+                 [class.winner-card]="slot.idx === 0"
+                 [class.visible]="podiumVisible()[slot.idx]"
+                 [style.--team-color]="constructorColor(podium()[slot.idx]?.Constructor?.constructorId)">
+              @if (slot.idx === 0) {
+                <div class="win-badge">WIN</div>
+              }
+              <div class="pos">P{{ podium()[slot.idx]?.position }}</div>
+              <div class="code">{{ podium()[slot.idx]?.Driver?.code }}</div>
+              <div class="full-name">
+                {{ podium()[slot.idx]?.Driver?.givenName }}
+                {{ podium()[slot.idx]?.Driver?.familyName }}
+              </div>
+              <div class="team-name">
+                <div class="team-dot"></div>
+                {{ podium()[slot.idx]?.Constructor?.name?.toUpperCase() }}
+              </div>
+              <div class="card-row">
+                <span class="row-label">TIEMPO</span>
+                <span class="row-value">
+                  {{ slot.idx === 0
+                      ? podium()[slot.idx]?.Time?.time
+                      : ('+' + podium()[slot.idx]?.Time?.time) }}
+                </span>
+              </div>
+              <div class="card-row">
+                <span class="row-label">PTS</span>
+                <span class="row-value">+{{ podium()[slot.idx]?.points }}</span>
+              </div>
+            </div>
+            <div class="podium-plinth"
+                 [style.height.px]="podiumVisible()[slot.idx] ? slot.height : 0"
+                 [style.background]="constructorColor(podium()[slot.idx]?.Constructor?.constructorId)">
+              <div class="plinth-texture"></div>
+              <div class="plinth-number">{{ slot.idx + 1 }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
   }
-</div>
+
+  <!-- ═══ TIMING TOWER ═══ -->
+  @for (race of currentService.Races(); track race.raceName) {
+    <section class="timing-tower">
+      <div class="tower-header">
+        <div>
+          <div class="tower-label">// TIMING TOWER</div>
+          <h2>Clasificación Completa</h2>
+        </div>
+        <div class="legend">
+          <span class="legend-item">
+            <span class="fl-dot"></span> V. RÁPIDA
+          </span>
+          <span class="legend-item">
+            <span class="tire-dot S">S</span> BLANDO
+          </span>
+          <span class="legend-item">
+            <span class="tire-dot M">M</span> MEDIO
+          </span>
+          <span class="legend-item">
+            <span class="tire-dot H">H</span> DURO
+          </span>
+        </div>
+      </div>
+
+      <!-- Column headers -->
+      <div class="col-headers">
+        <div class="c-pos">POS</div>
+        <div class="c-delta">ΔGRID</div>
+        <div class="c-driver">PILOTO</div>
+        <div>ESCUDERÍA</div>
+        <div class="c-laps">VUELTAS</div>
+        <div class="c-gap">INTERVALO</div>
+        <div class="c-tire">NEU</div>
+        <div class="c-pit">PIT</div>
+        <div class="c-pts">PTS</div>
+      </div>
+
+      <!-- Rows -->
+      <div motionReveal motionRevealChildren=".result-row">
+        @for (result of race.Results; track result.position; let i = $index) {
+          <a class="result-row"
+             [class.dnf]="result.status !== 'Finished'"
+             [routerLink]="['/driver-details', result.Driver.driverId]"
+             [style.--team-color]="constructorColor(result.Constructor.constructorId)">
+
+            <!-- POS -->
+            <div class="c-pos" [class.podium]="+result.position <= 3">
+              @if (+result.position <= 3) { <div class="podium-bar"></div> }
+              {{ result.position }}
+            </div>
+
+            <!-- ΔGRID -->
+            <div class="c-delta"
+                 [class.up]="gridDelta(result) > 0"
+                 [class.down]="gridDelta(result) < 0"
+                 [class.same]="gridDelta(result) === 0">
+              @if (gridDelta(result) > 0) {
+                ▲ {{ gridDelta(result) }}
+              } @else if (gridDelta(result) < 0) {
+                ▼ {{ -gridDelta(result) }}
+              } @else {
+                —
+              }
+            </div>
+
+            <!-- DRIVER -->
+            <div class="c-driver">
+              <div class="team-spine"></div>
+              <div class="driver-code">{{ result.Driver.code }}</div>
+              <div class="driver-name">
+                {{ result.Driver.givenName }} {{ result.Driver.familyName }}
+              </div>
+            </div>
+
+            <!-- TEAM -->
+            <div class="c-team">{{ result.Constructor.name }}</div>
+
+            <!-- LAPS -->
+            <div class="c-laps" [class.dnf-laps]="result.status !== 'Finished'">
+              @if (result.status !== 'Finished') {
+                DNF · L{{ result.laps }}
+              } @else {
+                {{ result.laps }}
+              }
+            </div>
+
+            <!-- GAP -->
+            <div class="c-gap"
+                 [class.leader]="+result.position === 1"
+                 [class.dnf-gap]="result.status !== 'Finished'">
+              @if (+result.position === 1) {
+                {{ result.Time?.time }}
+              } @else if (result.status !== 'Finished') {
+                {{ result.status | statusEs }}
+              } @else {
+                +{{ result.Time?.time }}
+              }
+            </div>
+
+            <!-- TIRE (Ergast no provee compuesto) -->
+            <div class="c-tire">
+              @if (result.status === 'Finished') {
+                <span class="tire-dot M">M</span>
+              }
+            </div>
+
+            <!-- PIT -->
+            <div class="c-pit"></div>
+
+            <!-- PTS -->
+            <div class="c-pts" [class.no-pts]="+result.points === 0"
+                 [countUp]="result.points">
+              @if (+result.points > 0) { +{{ result.points }} } @else { — }
+            </div>
+
+            <!-- Fastest lap marker -->
+            @if (result.FastestLap?.rank === '1') {
+              <div class="fl-marker"></div>
+            }
+          </a>
+        }
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <span>F1 UNDERCUT · TEMPORADA {{ currentService.season() }} · DATOS PROVISIONALES</span>
+      <span>F1.PABLONUNEZ.DEV</span>
+    </footer>
+  }
+}

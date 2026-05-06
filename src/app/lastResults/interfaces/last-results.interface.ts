@@ -10,6 +10,7 @@ export interface Races {
   url: string;
   raceName: string;
   Circuit: Circuit;
+  date: string;
   Results: Results[];
 }
 
@@ -37,6 +38,7 @@ export interface Results {
 export interface Driver {
   driverId: string;
   permanentNumber: string;
+  code: string;
   url: string;
   givenName: string;
   familyName: string;

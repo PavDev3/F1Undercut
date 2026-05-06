@@ -1,8 +1,16 @@
-<div class="container">
-  <div class="header">
-    <h1>Clasificación</h1>
-    <div class="season-info">
-      <span>Temporada {{ standingsService.season() }}</span>
+<div class="standings-page">
+  <!-- Hero header -->
+  <div class="standings-hero">
+    <div class="hero-label">// CAMPEONATO MUNDIAL</div>
+    <h1>Standings {{ standingsService.season() }}</h1>
+    <div class="hero-meta">Temporada {{ standingsService.season() }}</div>
+
+    <!-- Tab toggle -->
+    <div class="tab-group">
+      <button class="tab-btn" [class.active]="activeTab === 'drivers'"
+              (click)="activeTab = 'drivers'">Pilotos</button>
+      <button class="tab-btn" [class.active]="activeTab === 'teams'"
+              (click)="activeTab = 'teams'">Constructores</button>
     </div>
   </div>
 
@@ -10,71 +18,100 @@
     <div class="state">Cargando clasificaciones...</div>
   } @else if (standingsService.error() || standingsConstructorService.error()) {
     <div class="state error">
-      {{
-        standingsService.error() || standingsConstructorService.error()
-      }}
+      {{ standingsService.error() || standingsConstructorService.error() }}
     </div>
   } @else {
-    <div class="standings-grid">
-      <div class="standings-section">
-        <h2>Pilotos</h2>
-        <table class="standings-table" motionReveal>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Piloto</th>
-              <th>Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (standingsList of standingsService.StandingsLists(); track
-            standingsList.DriverStandings) { @for (Driver of
-            standingsList.DriverStandings; track Driver) {
-            <tr>
-              <td class="position" [countUp]="Driver.position">
-                {{ Driver.position }}
-              </td>
-              <td class="driver">
-                <span class="surname">{{ Driver.Driver.familyName }}</span>
-                <span class="firstname">{{ Driver.Driver.givenName }}</span>
-              </td>
-              <td class="points" [countUp]="Driver.points">
-                {{ Driver.points }}
-              </td>
-            </tr>
-            } }
-          </tbody>
-        </table>
-      </div>
 
-      <div class="standings-section">
-        <h2>Constructores</h2>
-        <table class="standings-table" motionReveal>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Constructor</th>
-              <th>Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (standingsList of standingsConstructorService.StandingsLists();
-            track standingsConstructorService.StandingsLists) {
-            @for(Constructor of standingsList.ConstructorStandings; track
-            Constructor) {
-            <tr>
-              <td class="position" [countUp]="Constructor.position">
-                {{ Constructor.position }}
-              </td>
-              <td class="constructor">{{ Constructor.Constructor.name }}</td>
-              <td class="points" [countUp]="Constructor.points">
-                {{ Constructor.points }}
-              </td>
-            </tr>
-            } }
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <!-- ── DRIVERS ── -->
+    @if (activeTab === 'drivers') {
+      @for (list of standingsService.StandingsLists(); track list) {
+        <div class="standings-table-wrap">
+          <div class="col-headers">
+            <div class="c-pos">POS</div>
+            <div class="c-driver">PILOTO</div>
+            <div>EQUIPO</div>
+            <div class="c-num">VICT</div>
+            <div class="c-bar">PROGRESO</div>
+            <div class="c-pts">PUNTOS</div>
+          </div>
+
+          <div motionReveal motionRevealChildren=".s-row">
+            @for (s of list.DriverStandings; track s.Driver.driverId; let i = $index) {
+              <a class="s-row"
+                 [routerLink]="['/driver-details', s.Driver.driverId]"
+                 [style.--team-color]="constructorColor(s.Constructors[0]?.constructorId)">
+                <div class="c-pos" [class.top3]="i < 3">{{ s.position }}</div>
+                <div class="c-driver">
+                  <div class="team-spine"></div>
+                  <div>
+                    <div class="driver-code">{{ s.Driver.code }}</div>
+                    <div class="driver-name">
+                      {{ s.Driver.givenName }} {{ s.Driver.familyName }}
+                      · #{{ s.Driver.permanentNumber }}
+                    </div>
+                  </div>
+                </div>
+                <div class="c-team">{{ s.Constructors[0]?.name }}</div>
+                <div class="c-num">{{ s.wins }}</div>
+                <div class="c-bar">
+                  <div class="bar-track">
+                    <div class="bar-fill"
+                         [style.width]="progressPct(s.points, maxDriverPts()) + '%'">
+                    </div>
+                  </div>
+                </div>
+                <div class="c-pts" [countUp]="s.points">{{ s.points }}</div>
+              </a>
+            }
+          </div>
+        </div>
+      }
+    }
+
+    <!-- ── CONSTRUCTORS ── -->
+    @if (activeTab === 'teams') {
+      @for (list of standingsConstructorService.StandingsLists(); track list) {
+        <div class="standings-table-wrap">
+          <div class="col-headers col-headers--teams">
+            <div class="c-pos">POS</div>
+            <div class="c-driver">ESCUDERÍA</div>
+            <div class="c-num">VICT</div>
+            <div class="c-bar">PROGRESO</div>
+            <div class="c-pts">PUNTOS</div>
+          </div>
+
+          <div motionReveal motionRevealChildren=".s-row">
+            @for (s of list.ConstructorStandings; track s.Constructor.constructorId; let i = $index) {
+              <a class="s-row s-row--team"
+                 [routerLink]="['/team-details', s.Constructor.constructorId]"
+                 [style.--team-color]="constructorColor(s.Constructor.constructorId)">
+                <div class="c-pos" [class.top3]="i < 3">{{ s.position }}</div>
+                <div class="c-driver">
+                  <div class="team-spine-tall"></div>
+                  <div>
+                    <div class="team-full">{{ s.Constructor.name }}</div>
+                    <div class="driver-name">{{ s.Constructor.nationality }}</div>
+                  </div>
+                </div>
+                <div class="c-num">{{ s.wins }}</div>
+                <div class="c-bar">
+                  <div class="bar-track">
+                    <div class="bar-fill"
+                         [style.width]="progressPct(s.points, maxTeamPts()) + '%'">
+                    </div>
+                  </div>
+                </div>
+                <div class="c-pts" [countUp]="s.points">{{ s.points }}</div>
+              </a>
+            }
+          </div>
+        </div>
+      }
+    }
   }
+
+  <footer class="page-footer">
+    <span>F1 UNDERCUT · STANDINGS PROVISIONALES</span>
+    <span>F1.PABLONUNEZ.DEV</span>
+  </footer>
 </div>

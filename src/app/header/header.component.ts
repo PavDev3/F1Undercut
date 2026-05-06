@@ -1,89 +1,22 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CurrentService } from '../lastResults/data-access/last-results.service';
 
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule],
-  template: `
-    <header class="app-header">
-      <div class="brand">
-        <a class="logo" [routerLink]="['/']">F1 Undercut</a>
-        <button
-          class="menu-toggle"
-          type="button"
-          (click)="toggleMenu()"
-          [attr.aria-expanded]="isMenuOpen"
-          aria-label="Alternar menú de navegación"
-          [class.open]="isMenuOpen"
-        >
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <nav class="nav" [class.open]="isMenuOpen">
-        <a
-          mat-flat-button
-          routerLink="/last-results"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Últimos Resultados
-        </a>
-        <a
-          mat-flat-button
-          routerLink="/standings"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Clasificación
-        </a>
-        <a
-          mat-flat-button
-          routerLink="/schedule"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Calendario
-        </a>
-        <a
-          mat-flat-button
-          routerLink="/drivers"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Pilotos
-        </a>
-        <a
-          mat-flat-button
-          routerLink="/teams"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Escuderías
-        </a>
-        <a
-          mat-flat-button
-          routerLink="/tracks"
-          routerLinkActive="is-active"
-          (click)="closeMenu()"
-        >
-          Circuitos
-        </a>
-      </nav>
-    </header>
-  `,
+  imports: [RouterLink, RouterLinkActive],
+  templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  private currentService = inject(CurrentService);
+
   isMenuOpen = false;
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
+  get season() { return this.currentService.season(); }
+  get round()  { return this.currentService.round(); }
 
-  closeMenu() {
-    this.isMenuOpen = false;
-  }
+  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
+  closeMenu()  { this.isMenuOpen = false; }
 }

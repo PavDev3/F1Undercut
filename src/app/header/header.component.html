@@ -1,0 +1,53 @@
+<header class="app-header">
+  <!-- Brand -->
+  <a class="brand" [routerLink]="['/']">
+    <div class="logo-mark"></div>
+    <div class="logo-text">F1 <strong>UNDERCUT</strong></div>
+  </a>
+
+  <!-- Desktop nav -->
+  <nav class="nav" [class.open]="isMenuOpen">
+    <a class="nav-link"
+       routerLink="/last-results"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Resultados</a>
+    <a class="nav-link"
+       routerLink="/standings"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Standings</a>
+    <a class="nav-link"
+       routerLink="/schedule"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Calendario</a>
+    <a class="nav-link"
+       routerLink="/drivers"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Pilotos</a>
+    <a class="nav-link"
+       routerLink="/teams"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Equipos</a>
+    <a class="nav-link"
+       routerLink="/tracks"
+       routerLinkActive="is-active"
+       (click)="closeMenu()">Circuitos</a>
+  </nav>
+
+  <!-- Season badge (desktop) -->
+  @if (season) {
+    <div class="season-badge">
+      <span>{{ season }}</span>
+      <span class="sep">│</span>
+      <span class="round">R{{ round }}</span>
+    </div>
+  }
+
+  <!-- Mobile burger -->
+  <button class="menu-toggle"
+          type="button"
+          (click)="toggleMenu()"
+          [class.open]="isMenuOpen"
+          aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>

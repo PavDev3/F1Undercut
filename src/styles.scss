@@ -34,6 +34,7 @@ $f1-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($f1-theme);
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "./assets/css/freakflags.css";
 @font-face {
   font-family: "F1";
@@ -41,20 +42,67 @@ $f1-theme: mat.define-light-theme(
 }
 
 :root {
-  color-scheme: light;
-  --color-bg: #0b0d12;
-  --color-bg-2: #11141b;
-  --color-surface: rgba(255, 255, 255, 0.06);
-  --color-surface-strong: rgba(255, 255, 255, 0.12);
-  --color-border: rgba(255, 255, 255, 0.14);
-  --color-text: #e8ebf0;
-  --color-text-muted: #a7adba;
-  --color-accent: #e10600;
-  --color-accent-2: #ff3b2f;
-  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --shadow-2: 0 18px 40px rgba(0, 0, 0, 0.45);
-  --radius-1: 12px;
-  --radius-2: 18px;
+  color-scheme: dark;
+
+  /* Direction A — Backgrounds */
+  --bg:          #08090B;
+  --bg-2:        #0F1115;
+  --bg-3:        #16191F;
+  --bg-4:        #1C2028;
+
+  /* Borders */
+  --border:      rgba(255,255,255,0.06);
+  --border-2:    rgba(255,255,255,0.12);
+
+  /* Text */
+  --text:        #F4F4F5;
+  --text-dim:    rgba(244,244,245,0.55);
+  --text-muted:  rgba(244,244,245,0.35);
+
+  /* Accents */
+  --red:         #E10600;
+  --red-deep:    #8A0400;
+  --green:       #22C55E;
+  --purple:      #A855F7;
+  --yellow:      #FACC15;
+  --cyan:        #22D3EE;
+
+  /* Typography */
+  --font-display: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-sans:    'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Legacy compat aliases */
+  --color-bg:             var(--bg);
+  --color-bg-2:           var(--bg-2);
+  --color-surface:        var(--bg-3);
+  --color-surface-strong: var(--bg-4);
+  --color-border:         var(--border-2);
+  --color-text:           var(--text);
+  --color-text-muted:     var(--text-dim);
+  --color-accent:         var(--red);
+  --color-accent-2:       var(--red);
+  --radius-1:             2px;
+  --radius-2:             4px;
+  --shadow-1:             0 1px 3px rgba(0,0,0,0.4), 0 1px 8px rgba(0,0,0,0.3);
+  --shadow-2:             0 4px 16px rgba(0,0,0,0.5);
+}
+
+@keyframes speedLine {
+  0%   { transform: translateX(0);      opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(140vw); opacity: 0; }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes rowSlideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 *,
@@ -70,7 +118,7 @@ body {
 }
 
 html {
-  background: var(--color-bg);
+  background: var(--bg);
 }
 
 html::before {
@@ -90,9 +138,10 @@ html::before {
 
 body {
   margin: 0;
-  font-family: "F1", "Helvetica Neue", sans-serif;
-  background: transparent;
-  color: var(--color-text);
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
   letter-spacing: 0.2px;
 }
 
@@ -108,7 +157,6 @@ button:focus-visible {
 
 main {
   position: relative;
-  padding: 32px 0 56px;
 }
 
 /* Estilos para dispositivos móviles */
